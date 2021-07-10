@@ -1,3 +1,51 @@
 :root {
-    
+  --primary-text: #F9AA33;
+  --dark-gray: #496673;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.button--success {
+  color: #00AE21;
+}
+
+.button--error {
+  color: #FF3230;
+}
+
+.button--text {
+  border: none;
+  background: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }

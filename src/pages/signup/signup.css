@@ -4,18 +4,17 @@
 
 body {
   font-family: Inter, Areal;
-  color: #F9AA33;
-  background-color: #496673;
+  color: var(--primary-text);
+  background-color: var(--dark-gray);
   font-weight: 500;
   font-size: 9px;
   line-height: 9px;
   color: #CAD5DA;
 }
 
-.page-login {
-    max-width: 1200px;
+/* .page-login {
     padding: 20px;
-}
+} */
 
 .page-login__title {
     display: flex;
@@ -23,7 +22,7 @@ body {
     font-weight: 500;
     font-size: 20px;
     line-height: 20px;
-    color: #F9AA33;
+    color: var(--primary-text);
     margin: 0 0 40px;
 }
 
@@ -50,7 +49,7 @@ body {
 
 .input-list__item-input {
     border: none;
-    background-color: #496673;
+    background-color: var(--dark-gray);
     padding: 0;
 }
 
@@ -58,7 +57,7 @@ body {
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
-  color: #F9AA33;
+  color: var(--primary-text);
 }
 
 .input-list__item-label {
@@ -72,8 +71,8 @@ body {
   min-height: 37px;
   padding: 12px;
   width: 100%;
-  color: #496673;
-  background: #F9AA33;
+  color: var(--dark-gray);
+  background: var(--primary-text);
   border-radius: 8px;
   border: none;
   margin-bottom: 16px;

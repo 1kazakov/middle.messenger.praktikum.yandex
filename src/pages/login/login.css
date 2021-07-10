@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   font-family: Inter, Areal;
   color: #F9AA33;
@@ -12,10 +8,10 @@ body {
   color: #CAD5DA;
 }
 
-.page-login {
+/* .page-login {
   max-width: 1200px;
   padding: 20px;
-}
+} */
 
 .page-login__title {
   display: flex;
