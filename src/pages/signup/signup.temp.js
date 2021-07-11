@@ -1,8 +1,8 @@
 export default `
 <div class="container">
-  <main class="page-login">
-    <h1 class="page-login__title"> {{ namePage }} </h1>
-    <form class="page-login__form">
+  <main class="page">
+    <h1 class="page__title"> {{ namePage }} </h1>
+    <form class="page__form">
       <ul class="page-login__input-list input-list">
         {{ for form }}
           <li class="input-list__item">
@@ -13,7 +13,7 @@ export default `
       </ul>
       <button type="submit" class="input-list__button button button-primary">{{ buttonText }}</button>
     <form>
-    <a class="page-login__link" href="../login/login.html">{{ enterText }}</a>
+    <a class="page__link" href="../login/login.html">{{ enterText }}</a>
   </main>
 </div>
 `;

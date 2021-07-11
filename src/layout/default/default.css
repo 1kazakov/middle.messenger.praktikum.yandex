@@ -1,15 +1,21 @@
 :root {
-  --primary-text: #F9AA33;
-  --dark-gray: #496673;
-}
-
-* {
-  box-sizing: border-box;
+  --accent-color: #f9aa33;
+  --main-gray-800: #344955;
+  --main-gray-600: #496673;
+  --main-gray-100: #cad5da;
+  --success-color: #00ae21;
+  --attention-color: #ff3230;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: Inter, Areal, sans-serif;
+  color: var(--main-gray-100);
+  background-color: var(--main-gray-600);
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
 }
 
 .container {
@@ -34,11 +40,11 @@ body {
 }
 
 .button--success {
-  color: #00AE21;
+  color: var(--success-color);
 }
 
 .button--error {
-  color: #FF3230;
+  color: var(--attention-color);
 }
 
 .button--text {

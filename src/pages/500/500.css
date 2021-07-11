@@ -1,22 +1,9 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Inter, Areal;
-  color: #F9AA33;
-  background-color: #496673;
-  font-weight: 500;
-  font-size: 9px;
-  line-height: 9px;
-  color: #CAD5DA;
-  margin: 0;
-}
-
 .page {
   display: grid;
   justify-content: center;
-  color: #F9AA33;
+  color: var(--accent-color);
+  font-size: 9px;
+  line-height: 9px;
 }
 
 .page__title {
@@ -38,6 +25,6 @@ body {
   font-size: 11px;
   line-height: 11px;
   text-align: center;
-  color: #CAD5DA;
   text-decoration: none;
+  color: var(--main-gray-100);
 }
