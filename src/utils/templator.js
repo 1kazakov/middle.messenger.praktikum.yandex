@@ -15,13 +15,10 @@ export default class Templator {
   }
 
   compileListTemplate(tmpl, templateVariable) {
-    console.log('2222222', templateVariable);
     const listTemplate = tmpl.match(this.TEMPLATE_LIST_REGEXP);
     if (!listTemplate) {
       return tmpl;
     }
-
-    console.log('333333', listTemplate);
 
     const { value, template } = listTemplate.groups;
     const datas = getValue(this.context, value.trim());
@@ -60,8 +57,6 @@ export default class Templator {
     while ((key = regExp.exec(tmpl))) {
       if (key[1]) {
         if (key[1].includes('for ')) {
-          console.log('111111');
-          console.log('key[1]', key[1]);
           tmpl = this.compileListTemplate(tmpl, key[1]);
           // eslint-disable-next-line
           continue;
@@ -71,21 +66,6 @@ export default class Templator {
         tmpl = tmpl.replace(new RegExp(key[0], 'gi'), data);
       }
     }
-
-    // const templateVariables = tmpl.match(regExp);
-
-    // if (!templateVariables) {
-    //   return;
-    // }
-
-    // for (const templateVariable of templateVariables) {
-    //   if (templateVariable.includes('for')) {
-    //     this.compileListTemplate(tmpl, templateVariable);
-    //   }
-    //   const tmplValue = templateVariable.trim();
-    //   const data = getValue(context, tmplValue);
-    //   tmpl = tmpl.replace(templateVariable, data);
-    // }
     // eslint-disable-next-line consistent-return
     return tmpl;
   }

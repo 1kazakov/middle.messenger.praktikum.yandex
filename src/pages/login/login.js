@@ -13,6 +13,6 @@ const context = {
   signUpText: 'Создать новый аккаунт',
 };
 
-const renderedTemplate = tmpl.compile(context); // Строка с html-вёрсткой
+const renderedTemplate = tmpl.compile(context);
 
-document.body.innerHTML = renderedTemplate; // Показался нужный результат
+document.body.innerHTML = renderedTemplate;
