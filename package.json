@@ -15,12 +15,14 @@
     "node": "16.4.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "parcel": "^2.0.0-beta.2",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.14.6"
   }
 }
