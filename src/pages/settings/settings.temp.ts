@@ -4,9 +4,9 @@ export default `
     <h1 class="page__title visually-hidden"> {{ namePage }} </h1>
     <section class="page__avatar avatar">
       <div class="avatar__image-wrapper">
-        <img src="{{ avatar.image }}" class="avatar__image">
+        <img src="{{ avatar }}" class="avatar__image">
       </div>
-      <a class="avatar__change-link button--text button--success" href="../login/login.html">{{ avatar.buttonChangeAvatar }}</a>
+      {{ buttonChangeAvatar }}
     </section>
     <ul class="page__data-list data-list">
       {{ for userData }}
@@ -17,9 +17,9 @@ export default `
       {{ /for }}
     </ul>
     <section class="page__list-change">
-      <a class="page__link button--text button--success" href="../login/login.html">{{ buttonChangeData }}</a>
-      <a class="page__link button--text button--success" href="../login/login.html">{{ buttonChangePassword }}</a>
-      <a class="page__link button--text button--error" href="../login/login.html">{{ exitText }}</a>
+      {{ buttonChangeData }}
+      {{ buttonChangePassword }}
+      {{ buttonExit }}
     </section>
   </main>
 </div>
