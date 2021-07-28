@@ -50,7 +50,7 @@ export default class Templator {
       let listElement = template;
       for (const tempVar of tempVars) {
         if (this.components.includes(tempVar.trim())) {
-          listElement = data;
+          listElement = listElement.replace(`{{${tempVar}}}`, data);;
           break;
         }
         const value = getValue(data, tempVar.trim());
@@ -80,7 +80,7 @@ export default class Templator {
         }
         const tmplValue = key[1].trim();
         const data = getValue(this.context, tmplValue);
-        regExp.lastIndex = regExp.lastIndex + key[0].length - data.length;
+        regExp.lastIndex = regExp.lastIndex - key[0].length - data.length;
         tmpl = tmpl.replace(new RegExp(key[0], 'gi'), data);
       }
     }
