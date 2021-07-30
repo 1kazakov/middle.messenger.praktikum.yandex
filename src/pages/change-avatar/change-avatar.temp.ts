@@ -11,12 +11,11 @@ export default `
       <ul class="page__input-list input-list">
         {{ for userData }}
           <li class="input-list__item">
-            <label class="input-list__item-label" for="{{ name }}">{{ fildName }}</label>
-            <input name="{{ name }}" class="input-list__item-input" type="text" id="{{ name }}" placeholder="{{ fildName }}" value="{{ value }}"/>
+            {{ input }}
           </li>
         {{ /for }}
       </ul>
-      <button type="submit" class="input-list__button button button-primary">{{ buttonText}}</button>
+      {{ buttonSave }}
     <form>
   </main>
 </div>
