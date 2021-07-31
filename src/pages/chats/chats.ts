@@ -2,93 +2,193 @@ import pageTemplates from './chats.temp';
 import Block from '../../utils/block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
+import Chat from '../../components/chat/chat';
+import Option from '../../components/option/option';
+import Message from '../../components/message/message';
+import MessageAction from '../../components/message-action/message-action';
 
 const context: {
-  namePage: string;
-  avatar: string;
-  email: any;
-  login: any;
-  firstName: any;
-  secondName: any;
-  displayName: any;
-  phone: any;
-  buttonSave: any;
+  namePage: string
+  buttonProfile: any
+  chats: any[]
+  selectedChatAvatar: string
+  selectedChatName:string
+  optionList: any[]
+  messages: any[]
+  messagesActions: any[]
+  buttonMessageActions: any
+  inputMessage: any
+  buttonSendMessage: any
+  listeners: any[]
+  events: {[key: string]: any}
 } = {
-  namePage: 'Изменение данных пользователя',
-  avatar:  'какой-то url',
-  email: new Input({ fildTitle: 'Почта',
-                     name: 'email',
-                     type: 'text',
-                     inputClass: 'input-list__item-input',
-                     labelClass: 'input-list__item-label',
-                     placeholder: 'Почта',
-                     value: 'kazakov@yandex.ru' }),
-  login: new Input({ fildTitle: 'Логин',
-                     name: 'login',
-                     type: 'text',
-                     inputClass: 'input-list__item-input',
-                     labelClass: 'input-list__item-label',
-                     placeholder: 'Логин',
-                     value: 'kazakov' }),
-  firstName: new Input({ fildTitle: 'Имя',
-                     name: 'first_name',
-                     type: 'text',
-                     inputClass: 'input-list__item-input',
-                     labelClass: 'input-list__item-label',
-                     placeholder: 'Имя',
-                     value: 'Антон' }),
-  secondName: new Input({ fildTitle: 'Фамилия',
-                     name: 'second_name',
-                     type: 'text',
-                     inputClass: 'input-list__item-input',
-                     labelClass: 'input-list__item-label',
-                     placeholder: 'Фамилия',
-                     value: 'Казаков' }),
-  displayName: new Input({ fildTitle: 'Имя в чате',
-                     name: 'display_name',
-                     type: 'text',
-                     inputClass: 'input-list__item-input',
-                     labelClass: 'input-list__item-label',
-                     placeholder: 'Имя в чате',
-                     value: 'Антон' }),
-  phone: new Input({ fildTitle: 'Телефон',
-                     name: 'phone',
-                     type: 'text',
-                     inputClass: 'input-list__item-input',
-                     labelClass: 'input-list__item-label',
-                     placeholder: 'Телефон',
-                     value: '+7 (912) 646 59 00' }),
-  buttonSave: new Button({ buttonName: 'Сохранить',
-                           buttonType: 'submit',
-                           buttonClass: 'input-list__button button button-primary' }),
+  namePage: 'Чаты',
+  buttonProfile: new Button({
+    buttonName: 'Профиль',
+    buttonType: 'button',
+    buttonClass: 'input-list__button button button-primary',
+  }),
+  chats: [
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'Андрей',
+      chatLastMessage: 'Изображение',
+      chatDate: '10:49',
+      counterMessage: 4,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'Киноклуб',
+      chatLastMessage: 'стикер',
+      chatDate: '12:00',
+      counterMessage: 4,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'Илья',
+      chatLastMessage: 'Друзья, у меня для вас особенный выпуск новостей!...',
+      chatDate: '15:12',
+      counterMessage: 4,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'тет-а-теты',
+      chatLastMessage: 'И Human Interface Guidelines и Material Design рекомендуют...',
+      chatDate: 'Ср',
+      counterMessage: 4,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: '1, 2, 3',
+      chatLastMessage: 'Миллионы россиян ежедневно проводят десятки часов свое...',
+      chatDate: 'Пн',
+      counterMessage: 4,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'Вадим',
+      chatLastMessage: ' Круто!',
+      chatDate: '10:49',
+      counterMessage: 4,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'Design Destroyer',
+      chatLastMessage: 'В 2008 году художник Jon Rafman  начал собирать...',
+      chatDate: 'Пн',
+      counterMessage: 0,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'Day.',
+      chatLastMessage: 'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
+      chatDate: '1 Мая 2020',
+      counterMessage: 0,
+    }),
+    new Chat({
+      chatAvatar: 'какой-то url',
+      chatName: 'Стас Рогозин',
+      chatLastMessage: 'Можно или сегодня или завтра вечером.',
+      chatDate: '12 Апр 2020',
+      counterMessage: 0,
+    }),
+  ],
+  selectedChatAvatar: 'какой-то url',
+  selectedChatName: 'Вадим',
+  optionList: [
+    new Option({
+      optionText: "Добавить пользователя"
+    }),
+    new Option({
+      optionText: "Удалить пользователя"
+    }),
+  ],
+  messages: [
+    new Message({
+      message: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой. Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
+      messageDate: '11:56',
+    }),
+    new Message({
+      messageClass: 'message--my',
+      message: `Круто! 
+      <a href="/src/pages/login/login.html">login</a>
+      <a href="/src/pages/signup/signup.html">sign-up</a>
+      <a href="/src/pages/settings/settings.html">settings</a>
+      <a href="/src/pages/change-user-data/change-user-data.html">change-user-data</a>
+      <a href="/src/pages/change-password/change-password.html">change-password</a>
+      <a href="/src/pages/change-avatar/change-avatar.html">change-avatar</a>
+      <a href="/src/pages/404/404.html">404</a>`,
+      messageDate: '12:00',
+    })
+  ],
+  messagesActions: [
+    new MessageAction({
+      action: 'Фото или Видео',
+    }),
+    new MessageAction({
+      action: 'Файл',
+    }),
+    new MessageAction({
+      action: 'Локация',
+    }),
+  ],
+  buttonMessageActions: new Button({
+    buttonName: 'Actions',
+    buttonType: 'submit',
+    buttonClass: 'button-round--primary button-round',
+  }),
+  inputMessage: new Input({
+    fildTitle: 'Сообщение',
+    name: 'Message',
+    inputClass: 'input-message__input',
+    labelClass: 'visually-hidden',
+    placeholder: 'Сообщение',
+    value: '',
+  }),
+  buttonSendMessage: new Button({
+    buttonName: '',
+    buttonType: 'submit',
+    buttonClass: 'button-round--primary button-round',
+  }),
+  listeners: [],
+  events: {
+    click: event => {
+      console.log(event)
+    },
+  }
 };
 
 
-class PageChangeUserData extends Block {
+class PageChats extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
   render() {
-    return this.templator().compile(pageTemplates, {
+    const html: string = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
-      userData: [
-        this.props.email.render(),
-        this.props.login.render(),
-        this.props.firstName.render(),
-        this.props.secondName.render(),
-        this.props.displayName.render(),
-        this.props.phone.render(),
-      ],
-      buttonSave: this.props.buttonSave.render(),
-    })
+      chats: this.props.chats.map(item => item.render()),
+      selectedChatAvatar: this.props.selectedChatAvatar,
+      selectedChatName: this.props.selectedChatName,
+      optionList: this.props.optionList.map(item => item.render()),
+      messages: this.props.messages.map(item => item.render()),
+      inputMessage: this.props.inputMessage.render(),
+      buttonSendMessage: this.props.buttonSendMessage.render(),
+    });
+    const root = document.querySelector('.root');
+    root.innerHTML = html;
+    return html;
+  }
+  addEvents() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.addEventListener('click', this.props.events.click));
+  }
+  removeEvents() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.removeEventListener('click', this.props.events.click));
   }
 }
 
-const page = new PageChangeUserData(context);
+const page = new PageChats(context);
 
-function render(block) {
-  document.body.appendChild(block.getContent());
-}
-
-render(page);
+page.render();
