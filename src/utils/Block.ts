@@ -1,4 +1,4 @@
-import EventBus from './EventBus';
+import EventBus from './eventBus';
 import Templator from './templator';
 
 export default class Block {
@@ -6,8 +6,8 @@ export default class Block {
   template: string;
   eventBus: () => {
     emit: (arg: string) => void,
-    //on: (arg: string) => void,
-    //off: (arg: string) => void
+    // on: (arg: string) => void,
+    // off: (arg: string) => void
   };
   templator: () => {
     compile(template: string, context: {[key: string]: any}): string,
@@ -68,6 +68,7 @@ export default class Block {
     const response: boolean = this.componentDidUpdate();
     if (response) {
       this.eventBus().emit(this.EVENTS.FLOW_RENDER);
+      this._removeEvents();
     }
   }
 
@@ -89,6 +90,18 @@ export default class Block {
     return this._element;
   }
 
+  _addEvents() {
+    this.addEvents()
+  }
+
+  addEvents() {}
+
+  _removeEvents() {
+    this.addEvents()
+  }
+
+  removeEvents() {}
+
   _render() {
     const block = this.render();
     // Этот небезопасный метод для упрощения логики
@@ -96,6 +109,7 @@ export default class Block {
     // Нужно не в строку компилировать (или делать это правильно),
     // либо сразу в DOM-элементы возвращать из compile DOM-ноду
     this._element.innerHTML = block;
+    this._addEvents()
   }
 
   render() {
@@ -115,10 +129,6 @@ export default class Block {
       set: (target, prop, value) => {
         if (target[prop] !== value) {
 
-    console.log('typeof nextProps', typeof target)
-    console.log('typeof ', target)
-    console.log('proto', target.__proto__)
-    console.log('prototype', target.prototype)
           target[prop] = value;
           this.eventBus().emit(this.EVENTS.FLOW_CDU);
           return true;
