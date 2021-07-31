@@ -1,6 +1,6 @@
-const inputTemp: string = `<div>
-<label class="{{ labelClass }}" for="{{ fildTitle }}">{{ fildTitle }}</label>
-<input name="{{ name }}" class="{{ inputClass }}" type="text" id="{{ fildTitle }}" placeholder="{{ fildTitle }}"/>
-</div>`;
+const inputTemp: string = `</>
+<label class="{{ labelClass }}" for="{{ name }}">{{ fildTitle }}</label>
+<input name="{{ name }}" class="{{ inputClass }}" type="{{ type }}" id="{{ name }}" placeholder="{{ placeholder }}" value="{{ value }}"/>
+</>`;
 
 export default inputTemp;

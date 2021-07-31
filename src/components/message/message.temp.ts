@@ -1,5 +1,5 @@
 const chatTmpl: string = `
-<li class="list-messages__item message">
+<li class="list-messages__item message {{ messageClass }}">
 <p class="message__text">
   {{ message }}
 </p>

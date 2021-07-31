@@ -4,12 +4,12 @@ const chatTmpl: string = `
     <img src="{{ chatAvatar}}" />
   </div>
   <div class="chat__info">
-    <div class="chat__content">
-      <p>{{ chatName }}</p>
-      <p>{{ chatLastMessage }}</p>
-    </div>
-    <div class="chat__support-info">
+    <div class="chat__header">
+      <p class="chat__name">{{ chatName }}</p>
       <p class="chat__date">{{ chatDate }}</p>
+    </div>
+    <div class="chat__message-info">
+      <p class="chat__last-message">{{ chatLastMessage }}</p>
       <p class="chat__counter-message">{{ counterMessage }}</p>
     </div>
   </div>
