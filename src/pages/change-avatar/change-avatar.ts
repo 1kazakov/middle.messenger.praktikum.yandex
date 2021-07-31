@@ -1,5 +1,5 @@
 import pageTemplates from './change-avatar.temp';
-import Block from '../../utils/Block';
+import Block from '../../utils/block';
 import InputFile from '../../components/input-file/input-file';
 import Button from '../../components/button/button';
 

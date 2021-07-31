@@ -1,5 +1,5 @@
 import pageTemplates from './change-user-data.temp';
-import Block from '../../utils/Block';
+import Block from '../../utils/block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
 

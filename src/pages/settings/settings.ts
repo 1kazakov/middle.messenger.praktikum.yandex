@@ -1,5 +1,5 @@
 import pageTemplates from './settings.temp';
-import Block from '../../utils/Block';
+import Block from '../../utils/block';
 import Button from '../../components/button/button';
 
 const context: {

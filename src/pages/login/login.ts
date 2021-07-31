@@ -1,5 +1,5 @@
 import pageTemplates from './login.temp';
-import Block from '../../utils/Block';
+import Block from '../../utils/block';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 
@@ -15,11 +15,15 @@ const context: {
   login: new Input({ fildTitle: 'Логин',
                      name: 'login',
                      inputClass: 'input-list__item-input',
-                     labelClass: 'input-list__item-label' }),
+                     labelClass: 'input-list__item-label',
+                     placeholder: 'Логин',
+                     value: ''  }),
   password: new Input({ fildTitle: 'Пароль',
                         name: 'password',
                         inputClass: 'input-list__item-input',
-                        labelClass: 'input-list__item-label' }),
+                        labelClass: 'input-list__item-label',
+                        placeholder: 'Пароль',
+                        value: ''  }),
   button: new Button({ buttonName: 'Авторизоваться',
                buttonType: 'submit',
                buttonClass: 'input-list__button button button-primary' }),
