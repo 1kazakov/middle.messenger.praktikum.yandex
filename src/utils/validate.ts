@@ -1,4 +1,4 @@
-export default function (data: any, form = null) {
+export default function (data: any, form: any = null) {
   if (Array.isArray(data)) {
     for (const input of data) {
       checkTypeValidater(data, input);
@@ -8,7 +8,7 @@ export default function (data: any, form = null) {
   }
 }
 
-function checkTypeValidater (form, input) {
+function checkTypeValidater (form: any, input: any) {
   switch (input.name) {
     case 'login':
     case 'first_name':
@@ -35,13 +35,13 @@ function checkTypeValidater (form, input) {
   }
 }
 
-function validateTextField(input) {
+function validateTextField(input: any) {
   if (!input.value) {
     throw new Error(`Поле не заполнено ${input.name}`);
   }
 }
 
-function validateEmail(input) {
+function validateEmail(input: any) {
   if (!input.value) {
     throw new Error(`Поле не заполнено ${input.name}`);
   }
@@ -51,7 +51,7 @@ function validateEmail(input) {
   }
 }
 
-function validatePhone(input) {
+function validatePhone(input: any) {
   if (!input.value) {
     throw new Error(`Поле не заполнено ${input.name}`);
   }
@@ -61,7 +61,7 @@ function validatePhone(input) {
   }
 }
 
-function validatePassword(input) {
+function validatePassword(input: any) {
   if (!input.value) {
     throw new Error(`Поле не заполнено ${input.name}`);
   }
@@ -70,11 +70,11 @@ function validatePassword(input) {
   }
 }
 
-function validateRepeatPassword(form, input) {
+function validateRepeatPassword(form: any, input: any) {
   if (!input.value) {
     throw new Error(`Поле не заполнено ${input.name}`);
   }
-  const [inputPassword] = form.filter(field => field.name === 'password' || field.name === 'newPassword');
+  const [inputPassword] = form.filter((field: any) => field.name === 'password' || field.name === 'newPassword');
   if (!inputPassword.value) {
     throw new Error(`Поле не заполнено ${inputPassword.name}`);
   }

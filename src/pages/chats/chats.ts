@@ -19,8 +19,6 @@ const context: {
   buttonMessageActions: any
   inputMessage: any
   buttonSendMessage: any
-  listeners: any[]
-  events: {[key: string]: any}
 } = {
   namePage: 'Чаты',
   buttonProfile: new Button({
@@ -150,12 +148,6 @@ const context: {
     buttonType: 'submit',
     buttonClass: 'button-round--primary button-round',
   }),
-  listeners: [],
-  events: {
-    click: event => {
-      console.log(event)
-    },
-  }
 };
 
 
@@ -167,27 +159,17 @@ class PageChats extends Block {
     const html: string = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
-      chats: this.props.chats.map(item => item.render()),
+      chats: this.props.chats.map((item: any)  => item.render()),
       selectedChatAvatar: this.props.selectedChatAvatar,
       selectedChatName: this.props.selectedChatName,
-      optionList: this.props.optionList.map(item => item.render()),
-      messages: this.props.messages.map(item => item.render()),
+      optionList: this.props.optionList.map((item: any) => item.render()),
+      messages: this.props.messages.map((item: any) => item.render()),
       inputMessage: this.props.inputMessage.render(),
       buttonSendMessage: this.props.buttonSendMessage.render(),
     });
     const root = document.querySelector('.root');
-    // document.body.innerHTML = html;
     root.innerHTML = html;
     return html;
-  }
-  addEvents() {
-    // document.body.addEventListener('click', this.props.events.click)
-    const buttons = document.querySelectorAll('button');
-    console.log('buttons', buttons)
-    // buttons.addEventListener('click', this.props.events.click);
-    buttons.forEach(button => button.addEventListener('click', () => alert('Спасибо!')))
-  }
-  removeEvents() {
   }
 }
 

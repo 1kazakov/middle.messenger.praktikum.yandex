@@ -31,21 +31,19 @@ class PageChangeAvatar extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    return this.templator().compile(pageTemplates, {
+    const html: string = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: {...this.props.avatar},
       userData: [
         this.props.newAvatar.render(),
       ],
       buttonSave: this.props.buttonSave.render(),
-    })
+    });
+    document.body.innerHTML = html;
+    return html;
   }
 }
 
 const page = new PageChangeAvatar(context);
 
-function render(block) {
-  document.body.appendChild(block.getContent());
-}
-
-render(page);
+page.render();

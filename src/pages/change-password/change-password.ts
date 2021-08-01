@@ -44,7 +44,7 @@ const context: {
     buttonClass: 'input-list__button button button-primary',
   }),
   events: {
-    submit: event => {
+    submit: (event: any) => {
       event.preventDefault();
       const formInput = [...event.target].filter(item => item.tagName === 'INPUT');
       validate(formInput);
@@ -54,7 +54,7 @@ const context: {
       }, {});
       console.log(formData)
     },
-    focus: event => {
+    focus: (event: any) => {
       if (event.target.name === 'passwordRepeat') {
         const form = document.querySelector('form');
         const formInputs = [...form].filter(item => item.tagName === 'INPUT');
@@ -65,7 +65,7 @@ const context: {
       validate(event.target);
       console.log(`${event.target.name} ${event.target.value}`)
     },
-    blur: event => {
+    blur: (event: any) => {
       if (event.target.name === 'passwordRepeat') {
         const form = document.querySelector('form');
         const formInputs = [...form].filter(item => item.tagName === 'INPUT');

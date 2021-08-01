@@ -16,19 +16,17 @@ class Page500 extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    return this.templator().compile(pageTemplates, {
+    const html: string = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       errorText: this.props.errorText,
       linkText: this.props.linkText,
-    })
+    });
+    document.body.innerHTML = html;
+    return html;
   }
 }
 
 
 const page = new Page500(context);
 
-function render(block) {
-  document.body.appendChild(block.getContent());
-}
-
-render(page);
+page.render();

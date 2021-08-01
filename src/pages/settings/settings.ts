@@ -40,7 +40,7 @@ class PageSettings extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    return this.templator().compile(pageTemplates, {
+    const html:string = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       buttonChangeAvatar: this.props.buttonChangeAvatar.render(),
@@ -49,13 +49,11 @@ class PageSettings extends Block {
       buttonChangePassword: this.props.buttonChangePassword.render(),
       buttonExit: this.props.buttonExit.render(),
     })
+    document.body.innerHTML = html;
+    return html;
   }
 }
 
 const page = new PageSettings(context);
 
-function render(block) {
-  document.body.appendChild(block.getContent());
-}
-
-render(page);
+page.render();

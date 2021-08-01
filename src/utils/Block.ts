@@ -20,8 +20,8 @@ export default class Block {
     FLOW_RENDER: "flow:render",
   };
 
-  _element = null;
-  _meta = null;
+  _element: any | null = null;
+  _meta: any | null = null;
 
   constructor(tagName = "div", props = {}, template = '') {
     const eventBus = new EventBus();
@@ -40,7 +40,7 @@ export default class Block {
     eventBus.emit(this.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: any) {
     eventBus.on(this.EVENTS.INIT, this.init.bind(this));
     eventBus.on(this.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(this.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -76,7 +76,7 @@ export default class Block {
     return true;
   }
 
-  setProps = nextProps => {
+  setProps = (nextProps: object) => {
     if (!nextProps) {
       return;
     }
@@ -121,7 +121,7 @@ export default class Block {
     return this.element;
   }
 
-  _makePropsProxy(props) {
+  _makePropsProxy(props: any) {
     return new Proxy(props, {
       get: (target, prop) => {
         const value = target[prop];
@@ -142,7 +142,7 @@ export default class Block {
     })
   }
 
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
