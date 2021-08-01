@@ -18,8 +18,9 @@
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background-color: var(--main-gray-100-800);
+  background-color: var(--main-gray-100);
   margin-bottom: 16px;
+  overflow: hidden;
 }
 
 .page__form {
