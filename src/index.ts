@@ -5,12 +5,12 @@ const testTempl = `
 <h1>{{ pageTitle }}</h1>
 `;
 
-const tmpl = new Templator(testTempl);
+const tmpl = new Templator();
 
 const context = {
   pageTitle: 'Здесь будет страница чатов',
 };
 
-const renderedTemplate = tmpl.compile(context);
+const renderedTemplate = tmpl.compile(testTempl, context);
 
 root.innerHTML = renderedTemplate;
