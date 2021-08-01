@@ -9,5 +9,9 @@
     "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "baseUrl": ".",
+    "paths": {
+      "~*": ["src/*"]
+    }
   }
 }
