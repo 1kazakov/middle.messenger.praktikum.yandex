@@ -1,0 +1,30 @@
+.page {
+  display: grid;
+  justify-content: center;
+  color: var(--accent-color);
+  font-size: 9px;
+  line-height: 9px;
+}
+
+.page__title {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 40px;
+  margin: 0 0 20px;
+}
+
+.page__error-text {
+  font-size: 20px;
+  line-height: 20px;
+  margin: 0 0 72px;
+}
+
+.page__link {
+  font-size: 11px;
+  line-height: 11px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--main-gray-100);
+}
