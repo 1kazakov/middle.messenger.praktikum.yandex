@@ -1,10 +1,11 @@
-import getValue from './getValue';
+import getValue from './get-value';
 
 export default class Templator {
   context: {[key: string]: any}
   template: string
   REGEXP: {[key: string]: RegExp}
   components: string[]
+  attrNotEmpty: string[]
 
   constructor() {
     this.context = {};
@@ -17,7 +18,8 @@ export default class Templator {
       TEMPLATE: /(?<=(\{\{))(.*?)(?=(\}\}))/gi,
       TEMPLATE_LIST_REGEXP: /\{\{\sfor\s(?<value>.+?)\}\}(?<template>.+?)\{\{\s\/for\s\}\}/si,
     };
-    this.components = ['button', 'input']
+    this.components = ['button', 'input', 'inputFile', 'chat', 'option', 'message'],
+    this.attrNotEmpty = ['value', 'class', 'placeholder']
   }
 
   compile = (template: string, context: {[key: string]: any}) => {
@@ -26,7 +28,7 @@ export default class Templator {
     return this.сompileTemplate();
   }
 
-  private compileListTemplate(tmpl) {
+  private compileListTemplate(tmpl: string) {
     const listTemplate = tmpl.match(this.REGEXP.TEMPLATE_LIST_REGEXP);
     if (!listTemplate) {
       return tmpl;
@@ -35,7 +37,8 @@ export default class Templator {
     const { value, template } = listTemplate.groups;
     const datas = getValue(this.context, value.trim());
     const tempVars = template.match(this.REGEXP.TEMPLATE);
-    if (tempVars.length === 0) {
+    
+    if (tempVars && tempVars.length === 0) {
       return tmpl;
     }
 
@@ -46,7 +49,6 @@ export default class Templator {
     let list = '';
 
     for (const data of datas) {
-      console.log('data', data);
       let listElement = template;
       for (const tempVar of tempVars) {
         if (this.components.includes(tempVar.trim())) {

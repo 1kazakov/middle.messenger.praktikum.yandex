@@ -94,7 +94,8 @@ export default class Block {
     this.addEvents()
   }
 
-  addEvents() {}
+  addEvents() {
+  }
 
   _removeEvents() {
     this.addEvents()
@@ -109,7 +110,7 @@ export default class Block {
     // Нужно не в строку компилировать (или делать это правильно),
     // либо сразу в DOM-элементы возвращать из compile DOM-ноду
     this._element.innerHTML = block;
-    this._addEvents()
+    setTimeout(this._addEvents.bind(this))
   }
 
   render() {
@@ -135,9 +136,9 @@ export default class Block {
         }
         return false;
       },
-      // deleteProperty(target: string, prop: any) {
-      //   throw new Error('Нет доступа');
-      // },
+      deleteProperty() {
+        throw new Error('Нет доступа');
+      },
     })
   }
 

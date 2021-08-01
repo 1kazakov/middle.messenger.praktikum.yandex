@@ -9,6 +9,5 @@ export default (obj: {[key: string]: any}, path: string, defaultValue: string = 
       return defaultValue;
     }
   }
-  console.log(result)
   return result ?? defaultValue; 
 };
