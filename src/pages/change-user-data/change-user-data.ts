@@ -1,7 +1,8 @@
 import pageTemplates from './change-user-data.temp';
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
+import validate from '../../utils/validate';
 
 const context: {
   namePage: string;
@@ -13,6 +14,7 @@ const context: {
   displayName: any;
   phone: any;
   buttonSave: any;
+  events: {[key: string]: any}
 } = {
   namePage: 'Изменение данных пользователя',
   avatar:  'какой-то url',
@@ -61,6 +63,40 @@ const context: {
   buttonSave: new Button({ buttonName: 'Сохранить',
                            buttonType: 'submit',
                            buttonClass: 'input-list__button button button-primary' }),
+  events: {
+    submit: event => {
+      event.preventDefault();
+      const formInput = [...event.target].filter(item => item.tagName === 'INPUT');
+      validate(formInput);
+      const formData = formInput.reduce((acc, item) => {
+        acc[item.name] = item.value
+        return acc;
+      }, {});
+      console.log(formData)
+    },
+    focus: event => {
+     if (event.target.name === 'passwordRepeat') {
+       const form = document.querySelector('form');
+       const formInputs = [...form].filter(item => item.tagName === 'INPUT');
+       validate(event.target, formInputs);
+       console.log(`${event.target.name} ${event.target.value}`)
+       return;
+     }
+     validate(event.target);
+     console.log(`${event.target.name} ${event.target.value}`)
+    },
+    blur: event => {
+      if (event.target.name === 'passwordRepeat') {
+        const form = document.querySelector('form');
+        const formInputs = [...form].filter(item => item.tagName === 'INPUT');
+        validate(event.target, formInputs);
+        console.log(`${event.target.name} ${event.target.value}`)
+        return;
+      }
+      validate(event.target);
+      console.log(`${event.target.name} ${event.target.value}`)
+    },
+  }
 };
 
 
@@ -69,7 +105,7 @@ class PageChangeUserData extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    return this.templator().compile(pageTemplates, {
+    const html = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       userData: [
@@ -82,13 +118,25 @@ class PageChangeUserData extends Block {
       ],
       buttonSave: this.props.buttonSave.render(),
     })
+    document.body.innerHTML = html;
+    return html;
+  }
+  addEvents() {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', this.props.events.submit);
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => input.addEventListener('focus', this.props.events.focus));
+    inputs.forEach(input => input.addEventListener('blur', this.props.events.blur));
+  }
+  removeEvents() {
+    const form = document.querySelector('form');
+    form.removeEventListener('submit', this.props.events.submit);
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => input.removeEventListener('focus', this.props.events.focus));
+    inputs.forEach(input => input.removeEventListener('blur', this.props.events.blur));
   }
 }
 
 const page = new PageChangeUserData(context);
 
-function render(block) {
-  document.body.appendChild(block.getContent());
-}
-
-render(page);
+page.render()
