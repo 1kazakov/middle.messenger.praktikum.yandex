@@ -1,4 +1,4 @@
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import chatsTemp from './chat.temp';
 
 export default class Chat extends Block {

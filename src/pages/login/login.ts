@@ -1,5 +1,5 @@
 import pageTemplates from './login.temp';
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 

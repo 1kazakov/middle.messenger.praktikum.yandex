@@ -1,4 +1,4 @@
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import messageTmpl from './message-action.temp';
 
 export default class Message extends Block {

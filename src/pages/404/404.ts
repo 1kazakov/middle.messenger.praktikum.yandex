@@ -1,5 +1,5 @@
 import pageTemplates from './404.temp';
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 
 const context = {
   namePage: '404',

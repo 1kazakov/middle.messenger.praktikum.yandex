@@ -1,4 +1,4 @@
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import buttonTemp from './button.temp';
 // import Templator from '../../utils/templator';
 

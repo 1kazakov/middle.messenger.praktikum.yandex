@@ -1,5 +1,5 @@
 import pageTemplates from './500.temp';
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 
 const context: {
   namePage: string

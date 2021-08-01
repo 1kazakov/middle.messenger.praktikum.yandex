@@ -1,5 +1,5 @@
 import pageTemplates from './chats.temp';
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
 import Chat from '../../components/chat/chat';
@@ -176,16 +176,18 @@ class PageChats extends Block {
       buttonSendMessage: this.props.buttonSendMessage.render(),
     });
     const root = document.querySelector('.root');
+    // document.body.innerHTML = html;
     root.innerHTML = html;
     return html;
   }
   addEvents() {
+    // document.body.addEventListener('click', this.props.events.click)
     const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.addEventListener('click', this.props.events.click));
+    console.log('buttons', buttons)
+    // buttons.addEventListener('click', this.props.events.click);
+    buttons.forEach(button => button.addEventListener('click', () => alert('Спасибо!')))
   }
   removeEvents() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.removeEventListener('click', this.props.events.click));
   }
 }
 

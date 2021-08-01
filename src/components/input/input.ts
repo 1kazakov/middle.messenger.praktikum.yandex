@@ -1,4 +1,4 @@
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import inputTemp from './input.temp';
 
 export default class Input extends Block {
