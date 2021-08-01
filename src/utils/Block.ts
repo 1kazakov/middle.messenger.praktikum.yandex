@@ -1,4 +1,4 @@
-import EventBus from './eventBus';
+import EventBus from './EventBus';
 import Templator from './templator';
 
 export default class Block {
