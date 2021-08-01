@@ -3,6 +3,7 @@
 - [Demo (Netlify)](https://condescending-joliot-1958a4.netlify.app/)
 - [UI (Figma)](https://www.figma.com/file/sLdBAVAJUwpuaJiX9UUTpK/Chat-(Copy)?node-id=1%3A515)
 - [PR](https://github.com/1kazakov/middle.messenger.praktikum.yandex/pull/1)
+- [PR_2](https://github.com/1kazakov/middle.messenger.praktikum.yandex/pulls)
 
 ## Описание
 
