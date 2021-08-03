@@ -1,4 +1,4 @@
-import pageTemplates from './change-password.temp';
+import pageTemplates from './change-password.template';
 import Block from '../../utils/Block';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';

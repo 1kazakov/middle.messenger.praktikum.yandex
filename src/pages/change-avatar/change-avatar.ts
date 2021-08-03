@@ -1,4 +1,4 @@
-import pageTemplates from './change-avatar.temp';
+import pageTemplates from './change-avatar.template';
 import Block from '../../utils/Block';
 import InputFile from '../../components/input-file/input-file';
 import Button from '../../components/button/button';

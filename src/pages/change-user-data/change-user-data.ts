@@ -1,4 +1,4 @@
-import pageTemplates from './change-user-data.temp';
+import pageTemplates from './change-user-data.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';

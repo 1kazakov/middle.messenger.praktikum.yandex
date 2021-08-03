@@ -1,4 +1,4 @@
-import pageTemplates from './404.temp';
+import pageTemplates from './404.template';
 import Block from '../../utils/Block';
 
 const context = {

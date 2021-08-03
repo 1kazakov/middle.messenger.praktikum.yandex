@@ -1,4 +1,4 @@
-import pageTemplates from './chats.temp';
+import pageTemplates from './chats.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';

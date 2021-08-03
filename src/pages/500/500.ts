@@ -1,4 +1,4 @@
-import pageTemplates from './500.temp';
+import pageTemplates from './500.template';
 import Block from '../../utils/Block';
 
 const context: {

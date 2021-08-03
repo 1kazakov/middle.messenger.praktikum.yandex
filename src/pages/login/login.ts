@@ -1,4 +1,4 @@
-import pageTemplates from './login.temp';
+import pageTemplates from './login.template';
 import Block from '../../utils/Block';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';

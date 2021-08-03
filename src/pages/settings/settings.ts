@@ -1,4 +1,4 @@
-import pageTemplates from './settings.temp';
+import pageTemplates from './settings.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 
