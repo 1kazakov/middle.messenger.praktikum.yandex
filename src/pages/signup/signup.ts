@@ -2,14 +2,12 @@ import pageTemplates from './signup.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
-import validate from '../../utils/validate';
 
 const context: {
   namePage: string
   userData: any[]
   buttonSingUp: any
   enterText: string
-  events: {[key: string]: any}
 }  = {
   namePage: 'Регистрация',
   userData: [
@@ -77,45 +75,10 @@ const context: {
   ],
   buttonSingUp: new Button({
     buttonName: 'Зарегистрироваться',
-    // buttonType: 'button',
     buttonType: 'submit',
     buttonClass: 'input-list__button button button-primary',
   }),
   enterText: 'Войти',
-  events: {
-    submit: (event: any) => {
-      event.preventDefault();
-      const formInput = [...event.target].filter((item: any) => item.tagName === 'INPUT');
-      validate(formInput);
-      const formData = formInput.reduce((acc, item) => {
-        acc[item.name] = item.value
-        return acc;
-      }, {});
-      console.log(formData)
-    },
-    focus: (event: any) => {
-      if (event.target.name === 'passwordRepeat') {
-        const form = document.querySelector('form');
-        const formInputs = [...form].filter((item: any) => item.tagName === 'INPUT');
-        validate(event.target, formInputs);
-        console.log(`${event.target.name} ${event.target.value}`)
-        return;
-      }
-      validate(event.target);
-      console.log(`${event.target.name} ${event.target.value}`)
-    },
-    blur: (event: any) => {
-      if (event.target.name === 'passwordRepeat') {
-        const form = document.querySelector('form');
-        const formInputs = [...form].filter((item: any) => item.tagName === 'INPUT');
-        validate(event.target, formInputs);
-        console.log(`${event.target.name} ${event.target.value}`)
-        return;
-      }
-      validate(event.target);
-      console.log(`${event.target.name} ${event.target.value}`)
-    },
-  }
 };
 
 class PageSingUp extends Block {
@@ -133,18 +96,10 @@ class PageSingUp extends Block {
     return html;
   }
   addEvents() {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', this.props.events.submit);
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => input.addEventListener('focus', this.props.events.focus));
-    inputs.forEach(input => input.addEventListener('blur', this.props.events.blur));
+    return true;
   }
   removeEvents() {
-    const form = document.querySelector('form');
-    form.removeEventListener('submit', this.props.events.submit);
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => input.removeEventListener('focus', this.props.events.focus));
-    inputs.forEach(input => input.removeEventListener('blur', this.props.events.blur));
+    return true
   }
 }
 

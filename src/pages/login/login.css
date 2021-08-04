@@ -34,6 +34,10 @@ body {
   border-bottom: 1px solid var(--main-gray-800);
 }
 
+.input-list__item.error {
+  border-bottom-color: var(--attention-color);
+}
+
 .input-list__item-input {
   border: none;
   background-color: var(--main-gray-600);

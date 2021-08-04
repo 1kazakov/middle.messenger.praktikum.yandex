@@ -15,7 +15,7 @@ export default `
           </li>
         {{ /for }}
       </ul>
-      {{ buttonSave}}
+      {{ buttonSave }}
     <form>
   </main>
 </div>

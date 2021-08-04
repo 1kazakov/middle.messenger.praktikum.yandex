@@ -1,5 +1,6 @@
 import EventBus from './EventBus';
 import Templator from './templator';
+import Validator from './validate';
 
 export default class Block {
   props: any;
@@ -11,6 +12,9 @@ export default class Block {
   };
   templator: () => {
     compile(template: string, context: {[key: string]: any}): string,
+  };
+  validator: () => {
+    run(action: string): any,
   };
 
   private readonly EVENTS = {
@@ -26,6 +30,7 @@ export default class Block {
   constructor(tagName = "div", props = {}, template = '') {
     const eventBus = new EventBus();
     const templator = new Templator();
+    const validator: any = new Validator();
     this._meta = {
       tagName,
       props,
@@ -35,6 +40,7 @@ export default class Block {
     this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.templator = () => templator;
+    this.validator = () => validator;
 
     this._registerEvents(eventBus);
     eventBus.emit(this.EVENTS.INIT);
@@ -91,17 +97,24 @@ export default class Block {
   }
 
   _addEvents() {
-    this.addEvents()
+    if (this.addEvents()) {
+      this.validator().run('addEventListener');
+    }
   }
 
   addEvents() {
+    return false;
   }
 
   _removeEvents() {
-    this.addEvents()
+    if (this.removeEvents()) {
+      this.validator().run('removeEventListener');
+    }
   }
 
-  removeEvents() {}
+  removeEvents() {
+    return false;
+  }
 
   _render() {
     const block = this.render();
