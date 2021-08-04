@@ -1,7 +1,7 @@
 const chatTmpl: string = `
 <li class="chats-list__item chat">
   <div class="chat__avatar">
-    <img src="{{ chatAvatar}}" />
+    <img src="{{ chatAvatar }}" />
   </div>
   <div class="chat__info">
     <div class="chat__header">

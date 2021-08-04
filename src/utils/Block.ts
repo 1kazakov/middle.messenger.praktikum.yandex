@@ -7,8 +7,6 @@ export default class Block {
   template: string;
   eventBus: () => {
     emit: (arg: string) => void,
-    // on: (arg: string) => void,
-    // off: (arg: string) => void
   };
   templator: () => {
     compile(template: string, context: {[key: string]: any}): string,

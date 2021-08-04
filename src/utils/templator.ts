@@ -11,8 +11,6 @@ export default class Templator {
     this.context = {};
     this.template = '';
     this.REGEXP = {
-      // TODO на будущее
-      HTML_TAG: /<(?<tagName>\/?\w+?)(?<attrs>\s[^<>]+)?\/?>/g,
       // TODO поменять названия
       TEMPLATE_REGEXP: /\{\{(.+?)\}\}/gi,
       TEMPLATE: /(?<=(\{\{))(.*?)(?=(\}\}))/gi,

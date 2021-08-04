@@ -2,12 +2,12 @@ export default `
 <main class="page">
   <div class="page__chats chats">
     <div class="chats__header">
-      {{ inputSearch}}
+      {{ inputSearch }}
       {{ buttonProfile }}
     </div>
     <div class="chat__list-wrapper">
       <ul class="chats__list chats-list">
-        {{ for chats}}
+        {{ for chats }}
           {{ chat }}
         {{ /for }}
       </ul>
@@ -18,7 +18,7 @@ export default `
     <div class="selected-chat__header">
       <div class="selected-chat__chat-info">
         <div class="selected-chat__avatar">
-          <img src="{{ selectedChatAvatar}}" />
+          <img src="{{ selectedChatAvatar }}" />
         </div>
         <p class="selected-chat__name">
           {{ selectedChatName }}
@@ -45,10 +45,10 @@ export default `
     <div class="selected-chat__send-section send-section">
       <div class="send-section__message-actions message-actions">
       {{ buttonSendMessage }}
-        <div class="message-actions__popap">
+        <div class="message-actions__popup">
           <ul class="message-actions__list">
             {{ for messagesActions }}
-              {{ messageAction}}
+              {{ messageAction }}
             {{ /for }}
           </ul>
         </div>

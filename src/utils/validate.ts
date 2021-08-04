@@ -94,7 +94,7 @@ validatePhone(input: any) {
   }
   if (!/\d+/.test(input.value) || !/[A-Za-z]+/.test(input.value)) {
     input.parentNode.classList.add('error');
-    throw new Error('Пароль должен содержать буквы и цыфры');
+    throw new Error('Пароль должен содержать буквы и цифры');
   }
 }
 
