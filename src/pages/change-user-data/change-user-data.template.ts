@@ -9,14 +9,14 @@ export default `
     </section>
     <form class="page__form">
       <ul class="page__input-list input-list">
-        {{ for userData }}
-          <li class="input-list__item">
+        {% userData %}
+          <li>
             {{ input }}
           </li>
-        {{ /for }}
+        {% end %}
       </ul>
       {{ buttonSave }}
-    <form>
+    </form>
   </main>
 </div>
 `;

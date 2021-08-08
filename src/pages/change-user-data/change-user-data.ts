@@ -80,14 +80,14 @@ class PageChangeUserData extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    const html = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       userData: this.props.userData.map((item: any) => item.render()),
       buttonSave: this.props.buttonSave.render(),
     })
-    document.body.innerHTML = html;
-    return html;
+    document.body.append(page);
+    return page;
   }
   addEvents() {
     return true;
@@ -97,6 +97,4 @@ class PageChangeUserData extends Block {
   }
 }
 
-const page = new PageChangeUserData(context);
-
-page.render()
+new PageChangeUserData(context);
