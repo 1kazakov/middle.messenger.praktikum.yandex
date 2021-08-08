@@ -1,6 +1,6 @@
 import pageTemplates from './change-password.template';
 import Block from '../../utils/Block';
-import Input from '../../components/input/input';
+import Input from '../../components/list-item/list-item';
 import Button from '../../components/button/button';
 
 const context: {

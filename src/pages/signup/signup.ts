@@ -1,7 +1,7 @@
 import pageTemplates from './signup.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
-import Input from '../../components/input/input';
+import Input from '../../components/list-item/list-item';
 
 const context: {
   namePage: string
