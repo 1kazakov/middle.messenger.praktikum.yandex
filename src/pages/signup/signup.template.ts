@@ -11,7 +11,7 @@ export default `
         {% end %}
       </ul>
       {{ buttonSingUp }}
-    <form>
+    </form>
     <a class="page__link" href="../login/login.html">{{ enterText }}</a>
   </main>
 </div>
