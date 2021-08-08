@@ -4,7 +4,7 @@ export default class Templator {
   context: {[key: string]: any}
   template: string
   REGEXP: {[key: string]: RegExp}
-  components: string[]
+  singlTags: string[]
   attrNotEmpty: string[]
   mapTags: {[key: string]: any}[]
   element: HTMLElement | HTMLInputElement | null | any
@@ -17,7 +17,7 @@ export default class Templator {
       TEMPLATE_REGEXP: /\{\{(.+?)\}\}/gi,
       TEMPLATE_LIST_REGEXP: /\{\%\s(?<value>.+?)\s\%\}(?<template>.+?)\{\%\send\s\%\}/isg,
     };
-    this.components = ['button', 'input', 'inputFile', 'chat', 'option', 'message'],
+    this.singlTags = ['input', 'img'],
     this.attrNotEmpty = ['value', 'class', 'placeholder'],
     this.mapTags = [],
     this.element = null;
@@ -37,6 +37,8 @@ export default class Templator {
     if (![...listTemplates].length) {
       return;
     }
+
+    // console.log('listTemplates', listTemplates)
 
     for (let i = 0; i < listTemplates.length; i++) {
       // for (const listTemplate of listTemplates) {
@@ -77,8 +79,6 @@ export default class Templator {
 
   private сompileTemplate(textContent: string) {
     let tmpl = textContent;
-    console.log('tmpl', tmpl)
-    let key = null;
     const regExp = this.REGEXP.TEMPLATE_REGEXP;
 
     if (!tmpl) {
@@ -100,7 +100,7 @@ export default class Templator {
     return tmpl;
   }
   parseHtml() {
-    const regExpTags = /\<(?<closeTag>\/??)?(?<tagName>\w+?(?=\s|>))\s?(?<attr>.+?)?(?<singlTag>\/??)?\>(?<textContent>[^<]+?(?=\<))?/g;
+    const regExpTags = /\<(?<closeTag>\/??)?(?<tagName>\w+?(?=\s|>))\s?(?<attr>[^<]+?)?(?<singlTag>\/??)?\>(?<textContent>[^<]+?(?=\<))?/g;
     // let result: any;
     const map: any[] = [];
     let nestingLevel: number = 0;
@@ -115,10 +115,11 @@ export default class Templator {
     while ((key = regExpTags.exec(tmpl))) {
       if (key[2]) { // key[2] = tagName
         const tag = this.getObjectTag(key);
-        if (tag.openTag || tag.singlTag) {
+        if ( nestingLevel === 0 || (tag.openTag && map[map.length - 1].openTag) || (tag.openTag && map[map.length - 1].singlTag)) {
           ++nestingLevel
-        }
-        if (!tag.openTag && !tag.singlTag) {
+        } else if (tag.singlTag && map[map.length - 1].openTag) {
+          ++nestingLevel
+        } else if ((tag.closeTag && map[map.length - 1].closeTag) || (tag.closeTag && map[map.length - 1].singlTag)) {
           --nestingLevel
         }
         tag.nestingLevel = nestingLevel;
@@ -126,23 +127,28 @@ export default class Templator {
         map.push(tag);
       }
     }
-    console.log('map', map)
+    // console.log('map', map)
     this.mapTags = map;
     this.renderer();
   }
   getObjectTag(key: any) {
-    const { closeTag, tagName, attr, singlTag, textContent } = key.groups;
+    const { closeTag, tagName, attr, textContent } = key.groups;
+    const singlTag = this.singlTags.includes(tagName)
+      ? this.singlTags.includes(tagName)
+      : !!key.group?.singlTag
     const tag: {
       openTag: boolean,
-      tagName: string,
       singlTag: boolean,
+      closeTag: boolean,
+      tagName: string,
       textContent: string,
       attrs: string[][],
       nestingLevel: number,
     } = {
       openTag: !closeTag && !singlTag,
+      singlTag,
+      closeTag: !!closeTag,
       tagName,
-      singlTag: !!singlTag,
       textContent,
       attrs: attr ? this.parseAttr(attr) : null,
       nestingLevel: 0,
@@ -159,7 +165,7 @@ export default class Templator {
     const nesting: {[key: string]: HTMLElement | HTMLInputElement} = {};
     let element: HTMLElement | HTMLInputElement;
     for (const tag of tags) {
-      // console.log('tag', tag)
+      // console.log('tag`render', tag)
       if (tag.openTag || tag.singlTag) {
         element = document.createElement(tag.tagName);
         if (tag.attrs) {
@@ -182,7 +188,7 @@ export default class Templator {
       }
       if (!tag.openTag && !tag.singlTag && tag.textContent) {
         const content  = this.сompileTemplate(tag.textContent);
-        nesting[tag.nestingLevel].append(content);
+        nesting[tag.nestingLevel - 1].append(content);
       }
     }
     this.element = nesting[1]
