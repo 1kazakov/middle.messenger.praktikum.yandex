@@ -12,14 +12,12 @@ class Page404 extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       ...this.props,
     });
-    document.body.innerHTML = html;
-    return html;
+    document.body.append(page);
+    return page;
   }
 } 
 
-const page = new Page404(context);
-
-page.render();
+new Page404(context);
