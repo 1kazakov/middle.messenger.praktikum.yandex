@@ -48,7 +48,7 @@ class PageChangePassword extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    const html = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       userData: [
@@ -58,8 +58,8 @@ class PageChangePassword extends Block {
       ],
       buttonSave: this.props.buttonSave.render(),
     })
-    document.body.innerHTML = html;
-    return html;
+    document.body.append(page);
+    return page;
   }
   addEvents() {
     return true;
@@ -69,6 +69,4 @@ class PageChangePassword extends Block {
   }
 }
 
-const page = new PageChangePassword(context);
-
-page.render()
+new PageChangePassword(context);
