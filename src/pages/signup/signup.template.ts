@@ -4,11 +4,11 @@ export default `
     <h1 class="page__title"> {{ namePage }} </h1>
     <form class="page__form">
       <ul class="page-login__input-list input-list">
-        {{ for userData }}
-          <li class="input-list__item">
+        {% userData %}
+          <li>
             {{ input }}
           </li>
-        {{ /for }}
+        {% end %}
       </ul>
       {{ buttonSingUp }}
     <form>

@@ -86,14 +86,14 @@ class PageSingUp extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       userData: this.props.userData.map((item: any) => item.render()),
       buttonSingUp: this.props.buttonSingUp.render(),
       enterText: this.props.enterText,
     })
-    document.body.innerHTML = html;
-    return html;
+    document.body.append(page);
+    return page;
   }
   addEvents() {
     return true;
@@ -103,6 +103,4 @@ class PageSingUp extends Block {
   }
 }
 
-const page = new PageSingUp(context);
-
-page.render()
+new PageSingUp(context);
