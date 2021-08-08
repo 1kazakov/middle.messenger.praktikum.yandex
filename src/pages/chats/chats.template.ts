@@ -2,14 +2,14 @@ export default `
 <main class="page">
   <div class="page__chats chats">
     <div class="chats__header">
-      {{ inputSearch }}
-      {{ buttonProfile }}
+      <div>{{ inputSearch }}</div>
+      <div>{{ buttonProfile }}</div>
     </div>
     <div class="chat__list-wrapper">
       <ul class="chats__list chats-list">
-        {{ for chats }}
-          {{ chat }}
-        {{ /for }}
+        {% chats %}
+          <li>{{ chat }}</li>
+        {% end %}
       </ul>
     </div>
   </div>
@@ -30,32 +30,32 @@ export default `
         </button>
         <div class="chat-options__popup">
           <ul class="chat-options__list options-list">
-            {{ for optionList }}
-              {{ option }}
-            {{ /for }}
+            {% optionList %}
+              <li>{{ option }}</li>
+            {% end %}
           </ul>
         </div>
       </div>
     </div>
     <ul class="selected-chat__list-messages list-messages">
-      {{ for messages }}
-        {{ message }}
-      {{ /for }}
+      {% messages %}
+        <li>{{ message }}</li>
+      {% end %}
     </ul>
     <div class="selected-chat__send-section send-section">
       <div class="send-section__message-actions message-actions">
-      {{ buttonSendMessage }}
+      <div>{{ buttonSendMessage }}</div>
         <div class="message-actions__popup">
           <ul class="message-actions__list">
-            {{ for messagesActions }}
-              {{ messageAction }}
-            {{ /for }}
+            {% messagesActions %}
+              <li>{{ messageAction }}</li>
+            {% end %}
           </ul>
         </div>
       </div>
       <div class="send-section__input-message input-message">
-        {{ inputMessage }}
-        {{ buttonSendMessage }}
+        <div>{{ inputMessage }}</div>
+        <div>{{ buttonSendMessage }}</div>
       </div>
     </div>
   </div>

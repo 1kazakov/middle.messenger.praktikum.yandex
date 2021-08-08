@@ -156,7 +156,7 @@ class PageChats extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       chats: this.props.chats.map((item: any)  => item.render()),
@@ -167,12 +167,9 @@ class PageChats extends Block {
       inputMessage: this.props.inputMessage.render(),
       buttonSendMessage: this.props.buttonSendMessage.render(),
     });
-    const root = document.querySelector('.root');
-    root.innerHTML = html;
-    return html;
+    document.body.append(page);
+    return page;
   }
 }
 
-const page = new PageChats(context);
-
-page.render();
+new PageChats(context);
