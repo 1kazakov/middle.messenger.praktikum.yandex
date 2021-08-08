@@ -13,17 +13,21 @@ const context: {
   avatar: {
     image: 'какой-то url',
   },
-  newAvatar: new InputFile({ fildTitle: 'Выберите изображение',
-                      type: 'file',
-                      name: 'avatar',
-                      inputClass: 'visually-hidden',
-                      labelClass: 'input-list__item-label',
-                      buttonClass: 'button button-primary',
-                      buttonTitle: 'Выбрaть',
-                      value: ''  }),
-  buttonSave: new Button({ buttonName: 'Сохранить',
-                           buttonType: 'submit',
-                           buttonClass: 'input-list__button button button-primary' }),
+  newAvatar: new InputFile({
+    fildTitle: 'Выберите изображение',
+    type: 'file',
+    name: 'avatar',
+    inputClass: 'visually-hidden',
+    labelClass: 'input-list__item-label',
+    buttonClass: 'button button-primary',
+    buttonTitle: 'Выбрaть',
+    value: '',
+  }),
+  buttonSave: new Button({
+    buttonName: 'Сохранить',
+    buttonType: 'submit',
+    buttonClass: 'input-list__button button button-primary',
+  }),
 };
 
 class PageChangeAvatar extends Block {
@@ -31,7 +35,7 @@ class PageChangeAvatar extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: {...this.props.avatar},
       userData: [
@@ -39,11 +43,9 @@ class PageChangeAvatar extends Block {
       ],
       buttonSave: this.props.buttonSave.render(),
     });
-    document.body.innerHTML = html;
-    return html;
+    document.body.append(page);
+    return page;
   }
 }
 
-const page = new PageChangeAvatar(context);
-
-page.render();
+new PageChangeAvatar(context);
