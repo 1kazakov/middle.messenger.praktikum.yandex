@@ -29,9 +29,11 @@ const context: {
       value: '',
     }),
   ],
-  button: new Button({ buttonName: 'Авторизоваться',
-               buttonType: 'submit',
-               buttonClass: 'input-list__button button button-primary' }),
+  button: new Button({
+    buttonName: 'Авторизоваться',
+    buttonType: 'submit',
+    buttonClass: 'input-list__button button button-primary',
+  }),
   signUpText: 'Создать новый аккаунт',
 };
 
@@ -40,14 +42,14 @@ class PageLogin extends Block {
     super('div', props, pageTemplates);
   }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       signUpText: this.props.signUpText,
       userData: this.props.userData.map((item: any) => item.render()),
       button: this.props.button.render(),
     })
-    document.body.innerHTML = html;
-    return html;
+    document.body.append(page);
+    return page;
   }
   addEvents() {
     return true;
@@ -57,6 +59,4 @@ class PageLogin extends Block {
   }
 }
 
-const page = new PageLogin(context);
-
-page.render()
+new PageLogin(context);
