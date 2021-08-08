@@ -9,7 +9,7 @@ export default class Block {
     emit: (arg: string) => void,
   };
   templator: () => {
-    compile(template: string, context: {[key: string]: any}): string,
+    compile(template: string, context: {[key: string]: any}): HTMLElement,
   };
   validator: () => {
     run(action: string): any,
