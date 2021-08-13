@@ -3,7 +3,7 @@ import Block from '../../utils/Block';
 import InputFile from '../../components/input-file/input-file';
 import Button from '../../components/button/button';
 
-const context: {
+export const context: {
   namePage: string;
   avatar: {[key: string]: string};
   newAvatar: any;
@@ -30,7 +30,7 @@ const context: {
   }),
 };
 
-class PageChangeAvatar extends Block {
+export class PageChangeAvatar extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
@@ -43,9 +43,6 @@ class PageChangeAvatar extends Block {
       ],
       buttonSave: this.props.buttonSave.render(),
     });
-    document.body.append(page);
     return page;
   }
 }
-
-new PageChangeAvatar(context);

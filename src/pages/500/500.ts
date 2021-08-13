@@ -1,7 +1,7 @@
 import pageTemplates from './500.template';
 import Block from '../../utils/Block';
 
-const context: {
+export const context: {
   namePage: string
   errorText: string
   linkText: string
@@ -11,7 +11,7 @@ const context: {
   linkText: 'Назад к чатам',
 };
 
-class Page500 extends Block {
+export class Page500 extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
@@ -21,9 +21,6 @@ class Page500 extends Block {
       errorText: this.props.errorText,
       linkText: this.props.linkText,
     });
-    document.body.append(page);
     return page;
   }
 }
-
-new Page500(context);

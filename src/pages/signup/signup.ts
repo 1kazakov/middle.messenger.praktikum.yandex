@@ -2,12 +2,16 @@ import pageTemplates from './signup.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 import Input from '../../components/list-item/list-item';
+import SignUpController from '../../controllers/sign-up-controller';
 
-const context: {
+const signUpController = new SignUpController();
+
+export const context: {
   namePage: string
   userData: any[]
   buttonSingUp: any
   enterText: string
+  events: any
 }  = {
   namePage: 'Регистрация',
   userData: [
@@ -79,9 +83,14 @@ const context: {
     buttonClass: 'input-list__button button button-primary',
   }),
   enterText: 'Войти',
+  events: {
+    'sing-up-form': {
+      submit: signUpController.signUp,
+    },
+  }
 };
 
-class PageSingUp extends Block {
+export class PageSignUp extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
@@ -92,7 +101,6 @@ class PageSingUp extends Block {
       buttonSingUp: this.props.buttonSingUp.render(),
       enterText: this.props.enterText,
     })
-    document.body.append(page);
     return page;
   }
   addEvents() {
@@ -102,5 +110,3 @@ class PageSingUp extends Block {
     return true
   }
 }
-
-new PageSingUp(context);

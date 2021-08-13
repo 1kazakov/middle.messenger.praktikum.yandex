@@ -3,7 +3,7 @@ import Block from '../../utils/Block';
 import Input from '../../components/list-item/list-item';
 import Button from '../../components/button/button';
 
-const context: {
+export const context: {
   namePage: string
   avatar: string
   oldPassword: any
@@ -43,7 +43,7 @@ const context: {
   }),
 };
 
-class PageChangePassword extends Block {
+export class PageChangePassword extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
@@ -58,7 +58,6 @@ class PageChangePassword extends Block {
       ],
       buttonSave: this.props.buttonSave.render(),
     })
-    document.body.append(page);
     return page;
   }
   addEvents() {
@@ -68,5 +67,3 @@ class PageChangePassword extends Block {
     return true
   }
 }
-
-new PageChangePassword(context);

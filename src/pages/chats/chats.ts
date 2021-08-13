@@ -7,8 +7,9 @@ import Option from '../../components/option/option';
 import Message from '../../components/message/message';
 import MessageAction from '../../components/message-action/message-action';
 
-const context: {
+export const context: {
   namePage: string
+  inputSearch: any
   buttonProfile: any
   chats: any[]
   selectedChatAvatar: string
@@ -21,6 +22,14 @@ const context: {
   buttonSendMessage: any
 } = {
   namePage: 'Чаты',
+  inputSearch: new Input({
+    fildTitle: 'Сообщение',
+    name: 'Message',
+    inputClass: 'input-message__input',
+    labelClass: 'visually-hidden',
+    placeholder: 'Сообщение',
+    value: '',
+  }),
   buttonProfile: new Button({
     buttonName: 'Профиль',
     buttonType: 'button',
@@ -151,14 +160,15 @@ const context: {
 };
 
 
-class PageChats extends Block {
+export class PageChats extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
   render() {
     const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
-      avatar: this.props.avatar,
+      inputSearch: this.props.inputSearch.render(),
+      buttonProfile: this.props.buttonProfile.render(),
       chats: this.props.chats.map((item: any)  => item.render()),
       selectedChatAvatar: this.props.selectedChatAvatar,
       selectedChatName: this.props.selectedChatName,
@@ -167,9 +177,6 @@ class PageChats extends Block {
       inputMessage: this.props.inputMessage.render(),
       buttonSendMessage: this.props.buttonSendMessage.render(),
     });
-    document.body.append(page);
     return page;
   }
 }
-
-new PageChats(context);

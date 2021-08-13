@@ -3,7 +3,7 @@ import Block from '../../utils/Block';
 import Button from '../../components/button/button';
 import Input from '../../components/list-item/list-item';
 
-const context: {
+export const context: {
   namePage: string;
   avatar: string;
   userData: any[]
@@ -75,7 +75,7 @@ const context: {
 };
 
 
-class PageChangeUserData extends Block {
+export class PageChangeUserData extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
@@ -86,7 +86,6 @@ class PageChangeUserData extends Block {
       userData: this.props.userData.map((item: any) => item.render()),
       buttonSave: this.props.buttonSave.render(),
     })
-    document.body.append(page);
     return page;
   }
   addEvents() {
@@ -96,5 +95,3 @@ class PageChangeUserData extends Block {
     return true
   }
 }
-
-new PageChangeUserData(context);
