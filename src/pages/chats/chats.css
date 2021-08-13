@@ -19,6 +19,12 @@
   right: 0;
 }
 
+.chats__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .chat__list-wrapper {
   height: 100%;
 }
