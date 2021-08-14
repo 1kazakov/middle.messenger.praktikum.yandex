@@ -16,8 +16,8 @@ export default `
       {% end %}
     </ul>
     <section class="page-settings__list-change">
-      <a href="/change-user-data" class="page__link button--text button--success">{{ buttonChangeData }}</a>
-      <a href="/change-password" class="page__link button--text button--success">{{ buttonChangePassword }}</a>
+      <a href="/change-user-data" class="page-settings__link button--text button--success change-user-data">{{ buttonChangeData }}</a>
+      <a href="/change-password" class="page-settings__link button--text button--success change-user-password">{{ buttonChangePassword }}</a>
       {{ buttonExit }}
     </section>
   </main>
