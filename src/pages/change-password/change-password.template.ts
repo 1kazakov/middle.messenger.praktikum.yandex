@@ -9,7 +9,7 @@ export default `
         <img src="{{ avatar }}" class="avatar__image" />
       </div>
     </section>
-    <form class="page-change-password__form">
+    <form class="page-change-password__form update-user-password">
       <ul class="page-change-password__input-list input-list">
         {% userData %}
           <li>

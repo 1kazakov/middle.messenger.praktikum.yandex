@@ -2,6 +2,9 @@ import pageTemplates from './change-password.template';
 import Block from '../../utils/Block';
 import Input from '../../components/list-item/list-item';
 import Button from '../../components/button/button';
+import UserController from '../../controllers/user-data-controller';
+
+const userController = new UserController();
 
 export const context: {
   namePage: string
@@ -10,6 +13,7 @@ export const context: {
   newPassword: any
   passwordRepeat: any
   buttonSave: any
+  events: {[key: string]: any}
 } = {
   namePage: 'Изменение пароля',
   avatar: 'какой-то url',
@@ -41,6 +45,11 @@ export const context: {
     buttonType: 'submit',
     buttonClass: 'input-list__button button button-primary',
   }),
+  events: {
+    'update-user-password': {
+      submit: userController.updateUserPassword,
+    },
+  }
 };
 
 export class PageChangePassword extends Block {
