@@ -4,7 +4,6 @@ import Input from '../../components/list-item/list-item';
 import Button from '../../components/button/button';
 import UserLoginController from '../../controllers/login-controller';
 
-
 const userLoginController = new UserLoginController();
 
 export const context: {
