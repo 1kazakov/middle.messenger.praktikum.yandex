@@ -7,7 +7,7 @@ export default `
         <img src="{{ avatar }}" class="avatar__image">
       </div>
     </section>
-    <form class="page-change-data__form">
+    <form class="page-change-data__form update-user-data">
       <ul class="page-change-data__input-list input-list">
         {% userData %}
           <li>
