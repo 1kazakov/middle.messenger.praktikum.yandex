@@ -6,6 +6,12 @@
   color: transparent;
 }
 
+.button-text {
+  border: none;
+  background-color: transparent;
+  color: var(--turquoise-200);
+}
+
 .button-round--primary {
   background-color: var(--accent-color-800);
 }
