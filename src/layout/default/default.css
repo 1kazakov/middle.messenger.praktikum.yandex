@@ -1,10 +1,19 @@
 :root {
-  --accent-color: #f9aa33;
+  --accent-color-900: #f48226;
+  --accent-color-800: #f9aa33;
   --main-gray-800: #344955;
+  --main-gray-700: #3b525d;
   --main-gray-600: #496673;
   --main-gray-100: #cad5da;
+  --gray-500: #a9b8c1;
+  --green-900: #254941;
+  --turquoise-200: #94c7c3;
   --success-color: #00ae21;
   --attention-color: #ff3230;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -37,6 +46,17 @@ body {
   overflow: hidden;
   border: 0;
   clip: rect(0 0 0 0);
+}
+
+.button {
+  min-height: 37px;
+  padding: 12px;
+  width: fit-content;
+  color: var(--main-gray-600);
+  background: var(--accent-color);
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 16px;
 }
 
 .button--success {

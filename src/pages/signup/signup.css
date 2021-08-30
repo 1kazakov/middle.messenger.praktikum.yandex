@@ -9,7 +9,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
-  color: var(--accent-color);
+  color: var(--accent-color-800);
   margin: 0 0 40px;
 }
 
@@ -34,6 +34,10 @@
   border-bottom: 1px solid var(--main-gray-800);
 }
 
+.input-list__item.error {
+  border-bottom-color: var(--attention-color);
+}
+
 .input-list__item-input {
   border: none;
   background-color: var(--main-gray-600);
@@ -44,7 +48,7 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
-  color: var(--accent-color);
+  color: var(--accent-color-800);
 }
 
 .input-list__item-label {
@@ -59,7 +63,7 @@
   padding: 12px;
   width: 100%;
   color: var(--main-gray-600);
-  background: var(--accent-color);
+  background: var(--accent-color-800);
   border-radius: 8px;
   border: none;
   margin-bottom: 16px;
