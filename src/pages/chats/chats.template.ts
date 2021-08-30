@@ -2,8 +2,16 @@ export default `
 <main class="page">
   <div class="page__chats chats">
     <div class="chats__header">
-      <div>{{ inputSearch }}</div>
-      <div>{{ buttonProfile }}</div>
+      <div class="chats__header-brow">
+        <div>{{ inputSearch }}</div>
+        <div>{{ buttonProfile }}</div>
+      </div>
+      <div class="chats__header-footer">
+        <form class="chats__form-new-chat create-new-chat">
+          <div>{{ inputTitleNewChat }}</div>
+          <div>{{ buttonNewChat }}</div>
+        </form>
+      </div>
     </div>
     <div class="chat__list-wrapper">
       <ul class="chats__list chats-list">
@@ -15,6 +23,7 @@ export default `
   </div>
 
   <div class="page__selected-chat selected-chat">
+    {: selectedChat :}
     <div class="selected-chat__header">
       <div class="selected-chat__chat-info">
         <div class="selected-chat__avatar">
@@ -39,7 +48,7 @@ export default `
     </div>
     <ul class="selected-chat__list-messages list-messages">
       {% messages %}
-        <li>{{ message }}</li>
+        <li class="list-messages__item">{{ message }}</li>
       {% end %}
     </ul>
     <div class="selected-chat__send-section send-section">
@@ -53,11 +62,12 @@ export default `
           </ul>
         </div>
       </div>
-      <div class="send-section__input-message input-message">
+      <form class="send-section__input-message input-message send-message">
         <div>{{ inputMessage }}</div>
         <div>{{ buttonSendMessage }}</div>
-      </div>
+      </form>
     </div>
+    {: end :}
   </div>
 </main>
 `;
