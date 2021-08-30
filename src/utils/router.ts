@@ -24,16 +24,12 @@ export default class Router {
     use(pathname: string, block: any, props: any) {
         const route = new Route(pathname, block, {rootQuery: this._rootQuery, props});
         this.routes.push(route);
-        // console.log('this.routes', this.routes)
       return this;
     }
 
     start() {
-    // Реагируем на изменения в адресной строке и вызываем перерисовку
-    // console.log('211111111')
     window.onpopstate = (event: any) => {
       event.preventDefault();
-      // console.log('onpopstate')
       this._onRoute(event.currentTarget.location.pathname);
     };
 
@@ -41,21 +37,17 @@ export default class Router {
     }
 
     _onRoute(pathname: string) {
-      // console.log('this.routes', this.routes)
       const route = this.getRoute(pathname);
-      // console.log(route)
-      // console.log(pathname)
 
       if (this._currentRoute) {
-          this._currentRoute.leave();
+        this._currentRoute.leave();
       }
 
       this._currentRoute = route;
-      route.render(route, pathname);
+      route.render();
     }
 
     go(pathname: string) {
-      console.log('99999')
       this.history.pushState({}, "", pathname);
       this._onRoute(pathname);
     }
