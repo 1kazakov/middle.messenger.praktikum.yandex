@@ -21,9 +21,9 @@ export default class Route {
   }
 
   leave() {
-      if (this._block) {
-          this._block.hide();
-      }
+    if (this._block) {
+      this._block.hide();
+    }
   }
 
   match(pathname: string) {
@@ -31,13 +31,11 @@ export default class Route {
   }
 
   render() {
-      if (!this._block) {
-        // console.log('2222')
-          this._block = new this._blockClass(this._props.props);
-          renderBlock(this._props.rootQuery, this._block);
-          return;
-      }
-
-      this._block.show();
+    console.log()
+    if (!this._block) {
+      this._block = new this._blockClass(this._props.props);
+      renderBlock(this._props.rootQuery, this._block);
+    }
+    renderBlock(this._props.rootQuery, this._block);
   }
 }
