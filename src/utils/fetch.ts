@@ -16,7 +16,7 @@ return keys.reduce((result, key, index) => {
 }, '?');
 }
 
-class HTTPTransport {
+export default class HTTPTransport {
   get = (url: string, options: any = {}) => {
        
       return this.request(url, {...options, method: METHODS.GET}, options.timeout);
@@ -47,7 +47,7 @@ class HTTPTransport {
           const isGet = method === METHODS.GET;
 
           xhr.open(
-              method, 
+              method,
               isGet && !!data
                   ? `${url}${queryStringify(data)}`
                   : url,
@@ -56,6 +56,10 @@ class HTTPTransport {
           Object.keys(headers).forEach(key => {
               xhr.setRequestHeader(key, headers[key]);
           });
+
+          xhr.withCredentials = true;
+
+          xhr.setRequestHeader('Content-Type', 'application/json');
       
           xhr.onload = function() {
               resolve(xhr);
@@ -66,6 +70,7 @@ class HTTPTransport {
       
           xhr.timeout = timeout;
           xhr.ontimeout = reject;
+
           
           if (isGet || !data) {
               xhr.send();
