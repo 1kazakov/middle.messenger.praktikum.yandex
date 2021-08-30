@@ -1,7 +1,7 @@
 import GlobalEventBus from './global-event-bus';
 import getValue from './get-value';
 
-import MessageModel from '../../types/message';
+import MessageModel from '../types/message';
 
 export default class Store {
   private static __instance: Store;

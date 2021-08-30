@@ -20,6 +20,7 @@ router
   .use('/change-password', PageChangePassword, propsPageChangePassword)
   .use('/change-user-data', PageChangeUserData, propsPageChangeUserData)
   .use('/login', PageLogin, propsPageLogin)
+  .use('/', PageLogin, propsPageLogin)
   .use('/sign-up', PageSignUp, propsSignUp)
   .use('/settings', PageSettings, propsSettings)
   .start();
