@@ -1,5 +1,5 @@
 const chatTmpl: string = `
-<div class="chats-list__item chat">
+<div class="chats-list__item chat choose-chat" data-chat-id="{{ chatId }}">
   <div class="chat__avatar">
     <img src="{{ chatAvatar }}" />
   </div>
