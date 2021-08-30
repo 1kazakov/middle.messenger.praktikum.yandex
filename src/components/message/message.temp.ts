@@ -1,12 +1,12 @@
 const chatTmpl: string = `
-<li class="list-messages__item message {{ messageClass }}">
+<div class="message {{ messageClass }}">
   <p class="message__text">
     {{ message }}
   </p>
   <p class="message__date">
     {{ messageDate }}
   </p>
-</li>
+</div>
 `;
 
 export default chatTmpl;
