@@ -74,7 +74,7 @@ export class PageSettings extends Block {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       buttonChangeAvatar: this.props.buttonChangeAvatar.render(),
-      userData: this.props.userData.map((item: any) => item.getContent()),
+      userData: this.props.userData.map((item: any) => item.render()),
       buttonChangeData: this.props.buttonChangeData,
       buttonChangePassword: this.props.buttonChangePassword,
       buttonExit: this.props.buttonExit.render(),
