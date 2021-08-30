@@ -19,25 +19,21 @@
   right: 0;
 }
 
-.chats__header-brow {
+.chats__header-brow,
+.chats__form-new-chat {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 13px 10px;
 }
 
-.chats__header > .button {
-  width: calc(100% - 20px);
-  margin: 0 10px;
+.chats__form-new-chat .button {
+  margin: 0;
 }
 
 .page__chats .input-list__item {
   margin: 0;
   padding: 0;
-}
-
-.chat__list-wrapper {
-  height: 100%;
 }
 
 .chats-list {
@@ -158,6 +154,12 @@
   background-color: var(--gray-500);
   bottom: 0;
   left: 0;
+}
+
+.list-messages__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .send-section {
