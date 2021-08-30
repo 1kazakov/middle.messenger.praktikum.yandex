@@ -88,18 +88,11 @@ export class PageChangeUserData extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
-  // init() {
-    // this.globalEventBus().on('update-user-data', super._componentDidUpdate.bind(this));
-  // }
   componentDidMount() {
-    console.log('111111111', 222222)
-    console.log('111111111', this.store())
     const userData = this.store().getProps('user');
-    console.log('111111111', userData)
     this.props.userData.forEach((inputElement: any) => {
       inputElement.setProps({value: userData[inputElement._meta.props.name]})
     });
-    console.log(this.props.userData)
   }
   render() {
     const page: HTMLElement = this.templator().compile(pageTemplates, {

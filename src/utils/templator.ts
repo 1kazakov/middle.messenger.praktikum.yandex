@@ -40,10 +40,7 @@ export default class Templator {
       return;
     }
 
-    // console.log('listTemplates', listTemplates)
-
     for (let i = 0; i < listTemplates.length; i++) {
-      // for (const listTemplate of listTemplates) {
       const { value, template } = listTemplates[i].groups;
       const newListItemTemplate = this.replaceListData(template, value);
       const datas = getValue(this.context, value.trim());
@@ -68,11 +65,8 @@ export default class Templator {
       return;
     }
     for (let i = 0; i < conditionTemplates.length; i++) {
-      console.log('conditionTemplates[i]', conditionTemplates[i])
       const { value } = conditionTemplates[i].groups;
       const data = !!getValue(context, value.trim());
-      console.log('data', data);
-      console.log('context', context);
       
       if (data) {
         this.template = this.template
@@ -127,7 +121,6 @@ export default class Templator {
   }
   parseHtml() {
     const regExpTags = /\<(?<closeTag>\/??)?(?<tagName>\w+?(?=\s|>))\s?(?<attr>[^<]+?)?(?<singlTag>\/??)?\>(?<textContent>[^<]+?(?=\<))?/g;
-    // let result: any;
     const map: any[] = [];
     let nestingLevel: number = 0;
     let key: any = null;
@@ -136,7 +129,6 @@ export default class Templator {
     if (!tmpl) {
       return;
     }
-    // console.log('tmpl', tmpl)
 
     while ((key = regExpTags.exec(tmpl))) {
       if (key[2]) { // key[2] = tagName
@@ -149,11 +141,9 @@ export default class Templator {
           --nestingLevel
         }
         tag.nestingLevel = nestingLevel;
-        // console.log('tag', tag)
         map.push(tag);
       }
     }
-    // console.log('map', map)
     this.mapTags = map;
     this.renderer();
   }
@@ -191,7 +181,6 @@ export default class Templator {
     const nesting: {[key: string]: HTMLElement | HTMLInputElement} = {};
     let element: HTMLElement | HTMLInputElement;
     for (const tag of tags) {
-      // console.log('tag`render', tag)
       if (tag.openTag || tag.singlTag) {
         element = document.createElement(tag.tagName);
         if (tag.attrs) {

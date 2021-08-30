@@ -62,12 +62,9 @@ export class PageSettings extends Block {
   }
   componentDidMount() {
     const userData = this.store().getProps('user');
-    console.log('componentDidMount', userData)
-    console.log('componentDidMount1', this.props.userData)
     this.props.userData.forEach((settingElement: any) => {
       settingElement.setProps({value: userData[settingElement._meta.props.name]})
     });
-    console.log('componentDidMount2', this.props.userData)
   }
   render() {
     const page: HTMLElement = this.templator().compile(pageTemplates, {

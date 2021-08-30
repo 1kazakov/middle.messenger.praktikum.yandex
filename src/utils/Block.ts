@@ -80,7 +80,6 @@ export default class Block {
   init() {}
 
   _componentDidMount() {
-    // console.log('_componentDidMount')
     this.componentDidMount();
     this.eventBus().emit(this.EVENTS.FLOW_RENDER);
   }
@@ -88,7 +87,6 @@ export default class Block {
   componentDidMount() {}
 
   _componentDidUpdate() {
-    // console.log('_componentDidUpdate')
     const response: boolean = this.componentDidUpdate();
     if (response) {
       this._removeEvents();
@@ -104,7 +102,6 @@ export default class Block {
     if (!nextProps) {
       return;
     }
-    // console.log()
 
     Object.assign(this.props, nextProps);
     
@@ -147,11 +144,6 @@ export default class Block {
 
   _render() {
     const block = this.render();
-    // console.log('_render', 'block', block)
-    // Этот небезопасный метод для упрощения логики
-    // Используйте шаблонизатор из npm или напишите свой безопасный
-    // Нужно не в строку компилировать (или делать это правильно),
-    // либо сразу в DOM-элементы возвращать из compile DOM-ноду
     this._element.innerHTML = '';
     this._element.append(block);
     setTimeout(this._addEvents.bind(this))
@@ -174,7 +166,6 @@ export default class Block {
       set: (target, prop, value) => {
         if (target[prop] !== value) {
           target[prop] = value;
-          // this.eventBus().emit(this.EVENTS.FLOW_CDU);
           return true;
         }
         return true;
@@ -186,7 +177,6 @@ export default class Block {
   }
 
   _createDocumentElement(tagName: string) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
 
@@ -195,7 +185,6 @@ export default class Block {
   }
 
   hide() {
-    console.log('HIDE')
     this._element.remove()
   }
 }

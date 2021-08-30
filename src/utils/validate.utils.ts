@@ -1,9 +1,6 @@
 export const validateForm = (form: any) => {
-  console.log('valera3')
       const formInput = [...form].filter((item: any) => item.tagName === 'INPUT');
-      console.log('valera4')
       formInput.forEach(input => checkTypeValidater(form, input))
-      console.log('valera5')
       const formData = formInput.reduce((acc, item) => {
         acc[item.name] = item.value
         return acc;
@@ -18,16 +15,6 @@ export const eventInputFocus = (event: any) => {
 export const eventInputBlur = (event: any) => {
       checkTypeValidater(event.target.parentNode.parentNode, event.target)
     }
-
-// export const run = (action: string) => {
-//       const form: any | null = document.querySelector('form');
-//       if (form !== null) {
-//         form[action]('submit', eventSubmit);
-//       }
-      // const formInput = [...form].filter((item: any) => item.tagName === 'INPUT');
-      // formInput.forEach(input => input[action]('focus', eventInputFocus))
-      // formInput.forEach(input => input[action]('blur', eventInputBlur))
-    // }
 
     const checkTypeValidater = (form: any, input: any) => {
       switch (input.name) {
@@ -112,8 +99,4 @@ const validatePhone = (input: any) => {
     input.parentNode.classList.add('error');
     throw new Error('Попробуйте еще раз повторить пароль');
   }
-}
-
-export const clickButton = (event: any) => {
-  console.log('click', event.target)
 }

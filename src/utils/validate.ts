@@ -16,7 +16,6 @@ export default class Validater {
         acc[item.name] = item.value
         return acc;
       }, {});
-      console.log(formData)
     }
 
     eventInputFocus = (event: any) => {
@@ -32,9 +31,6 @@ export default class Validater {
       if (form !== null) {
         form[action]('submit', this.eventSubmit);
       }
-      // const formInput = [...form].filter((item: any) => item.tagName === 'INPUT');
-      // formInput.forEach(input => input[action]('focus', this.eventInputFocus))
-      // formInput.forEach(input => input[action]('blur', this.eventInputBlur))
     }
 
     checkTypeValidater (form: any, input: any) {

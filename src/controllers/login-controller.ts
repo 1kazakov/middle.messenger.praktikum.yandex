@@ -1,11 +1,9 @@
-// import LoginFormModel from '../types/login-form-model';
 import LoginAPI from '../api/login-api';
 import Router from '../utils/router';
 import Store from '../utils/store';
 import { validateForm } from '../utils/validate.utils';
 
 const loginApi = new LoginAPI();
-// const userLoginValidator = validateLoginFields(validateRules);
 
 export default class UserLoginController {
   router: any
@@ -17,7 +15,6 @@ export default class UserLoginController {
     this.store = () => store;
   }
   public login = async (event: any) => {
-    // public async login(data: LoginFormModel) {
     event.preventDefault();
     try {
       const data = validateForm(event.target);
@@ -36,7 +33,6 @@ export default class UserLoginController {
         // Останавливаем крутилку
     } catch (error) {
       console.log(error)
-        // TO DO YOUR DEALS WITH ERROR
     }
   }
   public getUserData = async () => {

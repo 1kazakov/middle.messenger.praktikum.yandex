@@ -140,9 +140,6 @@ export class PageChats extends Block {
   }
   componentDidMount() {
     const chatsRaw = this.store().getProps('chats');
-    console.log('componentDidMount', chatsRaw)
-    console.log('componentDidMount', this.store())
-    // console.log('componentDidMount1', this.props.userData)
     const chatsProps = chatsRaw.map((chat: ChatModel) => {
       const dateLastMessage = chat.last_message?.time ? new Date(chat.last_message?.time) : null;
       const time = dateLastMessage ? `${dateLastMessage.getHours()}:${dateLastMessage.getMinutes()}` : null;
@@ -171,7 +168,6 @@ export class PageChats extends Block {
       this.props.messages = messageProps;
     }
     this.props.selectedChat = !!currentChat;
-    console.log('componentDidMount2', this.props.chats)
   }
   render() {
     const page: HTMLElement = this.templator().compile(pageTemplates, {

@@ -1,11 +1,9 @@
-// import LoginFormModel from '../types/login-form-model';
 import ChatsAPI from '../api/chats-api';
 import Router from '../utils/router';
 import Store from '../utils/store';
 import { validateForm } from '../utils/validate.utils';
 
 const chatsAPI = new ChatsAPI();
-// const userLoginValidator = validateLoginFields(validateRules);
 
 export default class ChatsController {
   router: any
@@ -22,16 +20,13 @@ export default class ChatsController {
     try {
       // Запускаем крутилку
       const chatsData: any = await chatsAPI.getChats({ data: {offset: 0, limit: 5} });
-      console.log('chatsData', chatsData);
       if (chatsData.status === 200) {
         this.store().setValue('chats', JSON.parse(chatsData.response));
       }
 
-      console.log(chatsData)
-
       // Останавливаем крутилку
     } catch (error) {
-      // TO DO YOUR DEALS WITH ERROR
+      console.log(error);
     }
   }
   public createNewChat = async (event: any) => {
@@ -43,19 +38,9 @@ export default class ChatsController {
         title: data.title,
       })
       const newChat: any = await chatsAPI.createNewChat({ data: payload });
-      console.log('newChat', newChat);
       if (newChat.status === 200) {
         await this.getChats();
       }
-      console.log(this.store().getProps('chats'))
-      console.log(this.store().getProps('chatsId'))
-      
-      // if (userData.status === 200) {
-      //   this.store().setValue('user', JSON.parse(userData.response));
-      // }
-      
-
-
     } catch {
 
     }
@@ -70,25 +55,17 @@ export default class ChatsController {
     const userId = this.store().getProps('user.id');
     let tokenReuqest: any = await chatsAPI.getToken(chatId)
     const { token } = JSON.parse(tokenReuqest.response);
-    console.log(this.store());
-    
 
     this.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
     this.socket.addEventListener('open', () => {
       console.log('Соединение установлено');
 
-      // socket.send(JSON.stringify({
-      //   content: 'Моё второе сообщение миру!',
-      //   type: 'message',
-      // }));
-
       this.socket.send(JSON.stringify({
         content: '0',
         type: 'get old',
       })); 
 
-      console.log(this.store())
     });
 
     this.socket.addEventListener('close', (event: any) => {

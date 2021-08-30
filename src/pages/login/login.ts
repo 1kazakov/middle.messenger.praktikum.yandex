@@ -57,10 +57,4 @@ export class PageLogin extends Block {
       button: this.props.button.render(),
     })
   }
-  // addEvents() {
-  //   return true;
-  // }
-  // removeEvents() {
-  //   return true
-  // }
 }

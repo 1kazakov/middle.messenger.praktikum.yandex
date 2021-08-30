@@ -27,19 +27,9 @@ export default class Store {
       currentChat: null,
     }
     Store.__instance = this;
-    // this._registerEvents(eventBus);
   }
 
-  // _registerEvents(eventBus: any) {
-  //   eventBus.on(this.EVENTS.INIT, this.init.bind(this));
-  //   eventBus.on(this.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-  //   eventBus.on(this.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-  //   eventBus.on(this.EVENTS.FLOW_RENDER, this._render.bind(this));
-  // }
-
   setValue = (propName: string, newValue: any) => {
-    console.log(9999)
-    console.log('newValue', newValue)
     if (!newValue) {
       return;
     }
@@ -69,12 +59,8 @@ export default class Store {
         console.log(error)
       }
     }
-    
-    // this.eventBus().emit(this.EVENTS.FLOW_CDU);
   };
   getProps = (path: string) => {
-    console.log('path', path);
-    
     return getValue(this.state, path);
   }
 

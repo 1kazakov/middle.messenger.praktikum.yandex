@@ -1,11 +1,9 @@
-// import LoginFormModel from '../types/login-form-model';
 import UserApi from '../api/user-api';
 import Router from '../utils/router';
 import Store from '../utils/store';
 import { validateForm } from '../utils/validate.utils';
 
 const singUpApi = new UserApi();
-// const userLoginValidator = validateLoginFields(validateRules);
 
 export default class UserSignUpController {
   router: any
@@ -39,7 +37,7 @@ export default class UserSignUpController {
 
       // Останавливаем крутилку
     } catch (error) {
-      // TO DO YOUR DEALS WITH ERROR
+      console.log(error)
     }
   }
   public updateUserPassword = async (event: any) => {
@@ -57,7 +55,7 @@ export default class UserSignUpController {
 
       // Останавливаем крутилку
     } catch (error) {
-      // TO DO YOUR DEALS WITH ERROR
+      console.log(error)
     }
   }
   getPayloadSignUp(data: any) {
