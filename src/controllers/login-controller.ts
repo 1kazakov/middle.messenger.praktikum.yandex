@@ -30,15 +30,25 @@ export default class UserLoginController {
       if (reqData.status !== 200) {
         throw new Error (JSON.parse(reqData.response).reason)
       }
-      const userData: any = await loginApi.getUserData();
-      if (userData.status === 200) {
-        this.store().setValue('user', JSON.parse(userData.response));
-        this.router().go('/chats');
-      }
+      
+      this.getUserData();
+      this.router().go('/chats');
         // Останавливаем крутилку
     } catch (error) {
       console.log(error)
         // TO DO YOUR DEALS WITH ERROR
+    }
+  }
+  public getUserData = async () => {
+    try {
+      const userData: any = await loginApi.getUserData();
+      if (userData.status === 200) {
+        this.store().setValue('user', JSON.parse(userData.response));
+        return;
+      }
+      throw new Error('Необходимо авторизироваться')
+    } catch(error) {
+      this.router().go('/login');
     }
   }
   public logout = async () => {
