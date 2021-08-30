@@ -4,6 +4,7 @@
 - [UI (Figma)](https://www.figma.com/file/sLdBAVAJUwpuaJiX9UUTpK/Chat-(Copy)?node-id=1%3A515)
 - [PR](https://github.com/1kazakov/middle.messenger.praktikum.yandex/pull/1)
 - [PR_2](https://github.com/1kazakov/middle.messenger.praktikum.yandex/pulls)
+- [PR_3](https://github.com/1kazakov/middle.messenger.praktikum.yandex/pull/3)
 
 ## Описание
 
@@ -13,7 +14,8 @@
 ## Запуск
 
 - `npm run start` — запуск тестовой версии,
+- `npm run test` — запуск тестовой версии,
 
 ## Тесты
 
-Тестов пока нет, но они обязательно будут
+Тестов пока мало, но они обязательно будут
