@@ -1,77 +1,70 @@
-export default class Validater {
-  private static __instance: Validater;
-    constructor() {
-      if (Validater.__instance) {
-        return Validater.__instance;
-      }
-  
-      Validater.__instance = this;
-    }
-
-    eventSubmit = (event: any) => {
-      event.preventDefault();
-      const formInput = [...event.target].filter((item: any) => item.tagName === 'INPUT');
-      formInput.forEach(input => this.checkTypeValidater(event.target, input))
+export const validateForm = (form: any) => {
+  console.log('valera3')
+      const formInput = [...form].filter((item: any) => item.tagName === 'INPUT');
+      console.log('valera4')
+      formInput.forEach(input => checkTypeValidater(form, input))
+      console.log('valera5')
       const formData = formInput.reduce((acc, item) => {
         acc[item.name] = item.value
         return acc;
       }, {});
-      console.log(formData)
+      return formData;
     }
 
-    eventInputFocus = (event: any) => {
+export const eventInputFocus = (event: any) => {
       event.target.parentNode.classList.remove('error');
     }
 
-    eventInputBlur = (event: any) => {
-      this.checkTypeValidater(event.target.parentNode.parentNode, event.target)
+export const eventInputBlur = (event: any) => {
+      checkTypeValidater(event.target.parentNode.parentNode, event.target)
     }
 
-    run(action: string) {
-      const form: any | null = document.querySelector('form');
-      if (form !== null) {
-        form[action]('submit', this.eventSubmit);
-      }
+// export const run = (action: string) => {
+//       const form: any | null = document.querySelector('form');
+//       if (form !== null) {
+//         form[action]('submit', eventSubmit);
+//       }
       // const formInput = [...form].filter((item: any) => item.tagName === 'INPUT');
-      // formInput.forEach(input => input[action]('focus', this.eventInputFocus))
-      // formInput.forEach(input => input[action]('blur', this.eventInputBlur))
-    }
+      // formInput.forEach(input => input[action]('focus', eventInputFocus))
+      // formInput.forEach(input => input[action]('blur', eventInputBlur))
+    // }
 
-    checkTypeValidater (form: any, input: any) {
+    const checkTypeValidater = (form: any, input: any) => {
       switch (input.name) {
         case 'login':
         case 'first_name':
         case 'second_name':
         case 'display_name':
-          return this.validateTextField(input);
+        case 'title':
+          return validateTextField(input);
           break;
         case 'email':
-          return this.validateEmail(input);
+          return validateEmail(input);
           break;
         case 'phone':
-          return this.validatePhone(input);
+          return validatePhone(input);
           break;
         case 'password':
         case 'oldPassword':
         case 'newPassword':
-          return this.validatePassword(input);
+          return validatePassword(input);
           break;
         case 'passwordRepeat':
-          return this.validateRepeatPassword(form, input);
+          return validateRepeatPassword(form, input);
           break;
         default:
           console.log('Неизвестное поле');
       }
     }
 
- validateTextField(input: any) {
+ const validateTextField = (input: any) => {
   if (!input.value) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${input.name}`);
   }
 }
 
-validateEmail(input: any) {
+const validateEmail = (input: any) => {
   if (!input.value) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${input.name}`);
@@ -82,7 +75,7 @@ validateEmail(input: any) {
     throw new Error('Проверьте правильность данных в поле email');
   }
 }
-validatePhone(input: any) {
+const validatePhone = (input: any) => {
   if (!input.value) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${input.name}`);
@@ -94,7 +87,7 @@ validatePhone(input: any) {
   }
 }
 
- validatePassword(input: any) {
+ const validatePassword = (input: any) => {
   if (!input.value) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${input.name}`);
@@ -105,7 +98,7 @@ validatePhone(input: any) {
   }
 }
 
- validateRepeatPassword(form: any, input: any) {
+ const validateRepeatPassword = (form: any, input: any) => {
   if (!input.value) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${input.name}`);
@@ -120,4 +113,7 @@ validatePhone(input: any) {
     throw new Error('Попробуйте еще раз повторить пароль');
   }
 }
+
+export const clickButton = (event: any) => {
+  console.log('click', event.target)
 }
