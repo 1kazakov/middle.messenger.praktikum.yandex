@@ -16,6 +16,7 @@ export default class Templator {
       // TODO поменять названия
       TEMPLATE_REGEXP: /\{\{(.+?)\}\}/gi,
       TEMPLATE_LIST_REGEXP: /\{\%\s(?<value>.+?)\s\%\}(?<template>.+?)\{\%\send\s\%\}/isg,
+      TEMPLATE_CONDITION_REGEXP: /\{\:\s(?<value>.+?)\s\:\}(?<template>.+?)\{\:\send\s\:\}/isg,
     };
     this.singlTags = ['input', 'img'],
     this.attrNotEmpty = ['value', 'class', 'placeholder'],
@@ -27,6 +28,7 @@ export default class Templator {
     this.context = context;
     this.template = template;
     this.compileListTemplate();
+    this.compileCondition(this.context);
     this.parseHtml();
     return this.element;
   }
@@ -56,6 +58,30 @@ export default class Templator {
         list += newListItemTemplate.replaceAll('counter', `${i}`);
       }
       this.template = this.template.replace(listTemplates[i][0], list);
+    }
+  }
+
+  private compileCondition(context: any) {
+    const tmpl = this.template
+    const conditionTemplates = [...tmpl.matchAll(this.REGEXP.TEMPLATE_CONDITION_REGEXP)];
+    if (![...conditionTemplates].length) {
+      return;
+    }
+    for (let i = 0; i < conditionTemplates.length; i++) {
+      console.log('conditionTemplates[i]', conditionTemplates[i])
+      const { value } = conditionTemplates[i].groups;
+      const data = !!getValue(context, value.trim());
+      console.log('data', data);
+      console.log('context', context);
+      
+      if (data) {
+        this.template = this.template
+          .replace(`{: ${value} :}`, '')
+          .replace('{: end :}', '');
+      } else {
+        this.template = this.template
+          .replace(conditionTemplates[i][0], '');
+      }
     }
   }
 
