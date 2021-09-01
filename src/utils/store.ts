@@ -25,7 +25,7 @@ export default class Store {
       chats: [],
       chatsId: [],
       currentChat: null,
-    }
+    };
     Store.__instance = this;
   }
 
@@ -42,12 +42,12 @@ export default class Store {
       });
       this.state[propName].unshift(...newChats);
       this.state.chatsId = this.state.chats.reduce((acc: any, item: any) => {
-        return [...acc, item.id]
-      }, [])
+        return acc.concat(item.id);
+      }, []);
       try{
         this.globalEventBus().emit('update-chats');
       } catch(error) {
-        console.log(error)
+        console.log(error);
       }
     }
 
@@ -56,7 +56,7 @@ export default class Store {
       try{
         this.globalEventBus().emit('update-user-data');
       } catch(error) {
-        console.log(error)
+        console.log(error);
       }
     }
   };
@@ -69,20 +69,20 @@ export default class Store {
     if (indexChat === -1) {
       return;
     }
-    const lastMessageInChat = this.state.chats[indexChat].last_message
+    const lastMessageInChat = this.state.chats[indexChat].last_message;
     const newMessages = Array.isArray(messages)
       ? messages.filter((message: MessageModel) => !this.state.chats[indexChat].messagesIdMap.includes(message.id)).reverse()
       : [messages].filter((message: MessageModel) => !this.state.chats[indexChat].messagesIdMap.includes(message.id)).reverse();
     const newMessageIdMap = newMessages.map((message: MessageModel) => message.id);
-    this.state.chats[indexChat].messages.push(...newMessages)
-    this.state.chats[indexChat].messagesIdMap.push(...newMessageIdMap)
+    this.state.chats[indexChat].messages.push(...newMessages);
+    this.state.chats[indexChat].messagesIdMap.push(...newMessageIdMap);
     if (!lastMessageInChat) {
       this.state.chats[indexChat]['last_message'] = newMessages[newMessages.length - 1];
     }
     try{
       this.globalEventBus().emit('update-chats');
     } catch(error) {
-      console.log(error)
+      console.log(error);
     }
   }
 

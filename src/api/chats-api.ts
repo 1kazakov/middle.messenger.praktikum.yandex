@@ -1,16 +1,15 @@
 import HTTP from '../utils/fetch';
-import { BaseAPI } from './base-api';
 
 const chatsAPIInstance = new HTTP();
 
-export default class LoginAPI extends BaseAPI {
+export default class ChatsAPI {
   public async getChats(data: {[key: string]: any}) {
-    return chatsAPIInstance.get('https://ya-praktikum.tech/api/v2/chats', data);
+    return chatsAPIInstance.get('/chats', data);
   }
   public async createNewChat(data: {[key: string]: any}) {
-    return chatsAPIInstance.post('https://ya-praktikum.tech/api/v2/chats', data);
+    return chatsAPIInstance.post('/chats', data);
   }
   public async getToken(id: string) {
-    return chatsAPIInstance.post(`https://ya-praktikum.tech/api/v2/chats/token/${id}`);
+    return chatsAPIInstance.post(`/chats/token/${id}`);
   }
 }

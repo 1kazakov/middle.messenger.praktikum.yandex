@@ -26,7 +26,7 @@ export default class UserSignUpController {
         login: data.login,
         email: data.email,
         phone: data.phone
-      })
+      });
       const userData: any = await singUpApi.updateUserData({ data: payload });
             
       if (userData.status === 200) {
@@ -37,7 +37,7 @@ export default class UserSignUpController {
 
       // Останавливаем крутилку
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   public updateUserPassword = async (event: any) => {
@@ -48,14 +48,14 @@ export default class UserSignUpController {
       const payload = JSON.stringify({
         oldPassword: data.oldPassword,
         newPassword: data.newPassword,
-      })
+      });
       await singUpApi.updateUserPassword({ data: payload });
 
       this.router().go('/settings');
 
       // Останавливаем крутилку
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   getPayloadSignUp(data: any) {
@@ -66,7 +66,7 @@ export default class UserSignUpController {
       email: data.email,
       password: data.password,
       phone: data.phone
-    }
+    };
     return payload;
   }
 } 

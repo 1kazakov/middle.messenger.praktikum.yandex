@@ -22,17 +22,17 @@ export default class UserLoginController {
       const payload = JSON.stringify({
         login: data.login,
         password: data.password
-      })
+      });
       const reqData: any = await loginApi.logining({ data: payload });
       if (reqData.status !== 200) {
-        throw new Error (JSON.parse(reqData.response).reason)
+        throw new Error (JSON.parse(reqData.response).reason);
       }
       
       this.getUserData();
       this.router().go('/chats');
         // Останавливаем крутилку
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   public getUserData = async () => {
@@ -42,13 +42,21 @@ export default class UserLoginController {
         this.store().setValue('user', JSON.parse(userData.response));
         return;
       }
-      throw new Error('Необходимо авторизироваться')
+      throw new Error('Необходимо авторизироваться');
     } catch(error) {
       this.router().go('/login');
     }
   }
   public logout = async () => {
     await loginApi.logout();
-    this.router().go('/login')
+    this.router().go('/login');
+  }
+  public checkUserAuth = async () => {
+    try {
+      await this.getUserData();
+      this.router().go('/chats');
+    } catch(error) {
+      console.log(error);
+    }
   }
 } 

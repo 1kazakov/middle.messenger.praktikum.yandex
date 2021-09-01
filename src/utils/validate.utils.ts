@@ -1,20 +1,20 @@
 export const validateForm = (form: any) => {
       const formInput = [...form].filter((item: any) => item.tagName === 'INPUT');
-      formInput.forEach(input => checkTypeValidater(form, input))
+      formInput.forEach(input => checkTypeValidater(form, input));
       const formData = formInput.reduce((acc, item) => {
-        acc[item.name] = item.value
+        acc[item.name] = item.value;
         return acc;
       }, {});
       return formData;
-    }
+    };
 
 export const eventInputFocus = (event: any) => {
       event.target.parentNode.classList.remove('error');
-    }
+    };
 
 export const eventInputBlur = (event: any) => {
-      checkTypeValidater(event.target.parentNode.parentNode, event.target)
-    }
+      checkTypeValidater(event.target.parentNode.parentNode, event.target);
+    };
 
     const checkTypeValidater = (form: any, input: any) => {
       switch (input.name) {
@@ -42,14 +42,14 @@ export const eventInputBlur = (event: any) => {
         default:
           console.log('Неизвестное поле');
       }
-    }
+    };
 
  const validateTextField = (input: any) => {
   if (!input.value) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${input.name}`);
   }
-}
+};
 
 const validateEmail = (input: any) => {
   if (!input.value) {
@@ -61,7 +61,7 @@ const validateEmail = (input: any) => {
     input.parentNode.classList.add('error');
     throw new Error('Проверьте правильность данных в поле email');
   }
-}
+};
 const validatePhone = (input: any) => {
   if (!input.value) {
     input.parentNode.classList.add('error');
@@ -72,7 +72,7 @@ const validatePhone = (input: any) => {
     input.parentNode.classList.add('error');
     throw new Error('Проверьте правильность данных в поле phone');
   }
-}
+};
 
  const validatePassword = (input: any) => {
   if (!input.value) {
@@ -83,7 +83,7 @@ const validatePhone = (input: any) => {
     input.parentNode.classList.add('error');
     throw new Error('Пароль должен содержать буквы и цифры');
   }
-}
+};
 
  const validateRepeatPassword = (form: any, input: any) => {
   if (!input.value) {
@@ -99,4 +99,4 @@ const validatePhone = (input: any) => {
     input.parentNode.classList.add('error');
     throw new Error('Попробуйте еще раз повторить пароль');
   }
-}
+};

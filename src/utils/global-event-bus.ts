@@ -3,7 +3,7 @@ import EventBus from "./EventBus";
 export default class GlobalEventBus extends EventBus {
   private static __instance: GlobalEventBus;
   constructor() {
-    super()
+    super();
     if (GlobalEventBus.__instance) {
       return GlobalEventBus.__instance;
     }

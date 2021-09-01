@@ -26,15 +26,15 @@ export default class UserSignUpController {
         email: data.email,
         password: data.password,
         phone: data.phone
-      })
+      });
       const reqData = singUpApi.request({ data: payload });
-      this.store.setProp('loginData', reqData);
+      this.store.setValue('user', reqData);
 
       this.router().go('/chats');
 
       // Останавливаем крутилку
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   getPayloadSignUp(data: any) {
@@ -45,7 +45,7 @@ export default class UserSignUpController {
       email: data.email,
       password: data.password,
       phone: data.phone
-    }
+    };
     return payload;
   }
 } 

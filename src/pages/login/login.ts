@@ -49,12 +49,15 @@ export class PageLogin extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
+  init() {
+    userLoginController.checkUserAuth();
+  }
   render() {
     return this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       signUpText: this.props.signUpText,
       userData: this.props.userData.map((item: any) => item.render()),
       button: this.props.button.render(),
-    })
+    });
   }
 }

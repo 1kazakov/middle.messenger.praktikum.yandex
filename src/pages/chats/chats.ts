@@ -144,13 +144,14 @@ export class PageChats extends Block {
       const dateLastMessage = chat.last_message?.time ? new Date(chat.last_message?.time) : null;
       const time = dateLastMessage ? `${dateLastMessage.getHours()}:${dateLastMessage.getMinutes()}` : null;
       return new Chat({
-      chatId: chat.id,
-      chatAvatar: chat.avatar,
-      chatName: chat.title,
-      chatLastMessage: chat.last_message?.content,
-      chatDate: time,
-      counterMessage: chat.unread_count !== 0 ? chat.unread_count : null,
-    })});
+        chatId: chat.id,
+        chatAvatar: chat.avatar,
+        chatName: chat.title,
+        chatLastMessage: chat.last_message?.content,
+        chatDate: time,
+        counterMessage: chat.unread_count !== 0 ? chat.unread_count : null,
+      });
+    });
     this.props.chats = chatsProps;
     const currentChat = this.store().getProps('currentChat');
     const userId = this.store().getProps('user.id');
@@ -158,13 +159,13 @@ export class PageChats extends Block {
       const indexChat = chatsRaw.findIndex((chat: any) => chat.id === +currentChat);
       const messageProps = chatsRaw[indexChat].messages.map((message: MessageModel) => {
         const dateMessage = new Date(message.time);
-        const time = `${dateMessage.getHours()}:${dateMessage.getMinutes()}`
+        const time = `${dateMessage.getHours()}:${dateMessage.getMinutes()}`;
         return new Message({
           messageClass: message.user_id === userId ? 'message--my' : '',
           message: message.content,
           messageDate: time,
-        })
-      })
+        });
+      });
       this.props.messages = messageProps;
     }
     this.props.selectedChat = !!currentChat;

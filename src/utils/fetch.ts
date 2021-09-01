@@ -5,6 +5,8 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
+const urlApiHost = 'https://ya-praktikum.tech/api/v2';
+
 function queryStringify(data: any) {
 if (typeof data !== 'object') {
     throw new Error('Data must be object');
@@ -36,11 +38,11 @@ export default class HTTPTransport {
 
   request = (url: string, options: any = {}, timeout = 5000) => {
       const {headers = {}, method, data} = options;
-
+      console.log(`${urlApiHost}${url}`);
       return new Promise(function(resolve, reject) {
           if (!method) {
-              reject('No method');
-              return;
+            reject('No method');
+            return;
           }
 
           const xhr = new XMLHttpRequest();
@@ -49,8 +51,8 @@ export default class HTTPTransport {
           xhr.open(
               method,
               isGet && !!data
-                  ? `${url}${queryStringify(data)}`
-                  : url,
+                  ? `${urlApiHost}${url}${queryStringify(data)}`
+                  : `${urlApiHost}${url}`,
           );
 
           Object.keys(headers).forEach(key => {

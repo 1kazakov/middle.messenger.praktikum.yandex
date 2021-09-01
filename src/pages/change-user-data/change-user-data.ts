@@ -91,7 +91,7 @@ export class PageChangeUserData extends Block {
   componentDidMount() {
     const userData = this.store().getProps('user');
     this.props.userData.forEach((inputElement: any) => {
-      inputElement.setProps({value: userData[inputElement._meta.props.name]})
+      inputElement.setProps({value: userData[inputElement._meta.props.name]});
     });
   }
   render() {
@@ -100,13 +100,13 @@ export class PageChangeUserData extends Block {
       avatar: this.props.avatar,
       userData: this.props.userData.map((item: any) => item.render()),
       buttonSave: this.props.buttonSave.render(),
-    })
+    });
     return page;
   }
   addEvents() {
     return true;
   }
   removeEvents() {
-    return true
+    return true;
   }
 }

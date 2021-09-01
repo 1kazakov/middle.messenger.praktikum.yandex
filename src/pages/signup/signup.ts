@@ -100,13 +100,13 @@ export class PageSignUp extends Block {
       userData: this.props.userData.map((item: any) => item.render()),
       buttonSingUp: this.props.buttonSingUp.render(),
       enterText: this.props.enterText,
-    })
+    });
     return page;
   }
   addEvents() {
     return true;
   }
   removeEvents() {
-    return true
+    return true;
   }
 }

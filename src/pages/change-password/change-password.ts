@@ -66,13 +66,13 @@ export class PageChangePassword extends Block {
         this.props.passwordRepeat.render(),
       ],
       buttonSave: this.props.buttonSave.render(),
-    })
+    });
     return page;
   }
   addEvents() {
     return true;
   }
   removeEvents() {
-    return true
+    return true;
   }
 }
