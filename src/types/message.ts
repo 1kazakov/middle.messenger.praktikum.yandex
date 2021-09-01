@@ -7,4 +7,4 @@ export default interface messageModel{
   content: string,
   'is_read': boolean,
   file: string | null,
-}
+};

@@ -36,7 +36,7 @@ export default class ChatsController {
       // Запускаем крутилку
       const payload = JSON.stringify({
         title: data.title,
-      })
+      });
       const newChat: any = await chatsAPI.createNewChat({ data: payload });
       if (newChat.status === 200) {
         await this.getChats();
@@ -49,11 +49,11 @@ export default class ChatsController {
     this.router().go('/settings');
   }
   public chooseChat = async (event: any) => {
-    event.stopPropagation()
+    event.stopPropagation();
     const chatId = event.target.dataset.chatId;
     this.store().setCurrentChat(chatId);
     const userId = this.store().getProps('user.id');
-    let tokenReuqest: any = await chatsAPI.getToken(chatId)
+    let tokenReuqest: any = await chatsAPI.getToken(chatId);
     const { token } = JSON.parse(tokenReuqest.response);
 
     this.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);

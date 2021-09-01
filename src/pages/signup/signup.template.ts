@@ -2,7 +2,7 @@ export default `
 <div class="container">
   <main class="page-sing-up">
     <h1 class="page-sing-up__title"> {{ namePage }} </h1>
-    <form class="page-sing-up__form" id="sing-up-form">
+    <form class="page-sing-up__form sing-up-form">
       <ul class="page-sing-up-login__input-list input-list">
         {% userData %}
           <li>

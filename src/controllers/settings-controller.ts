@@ -12,10 +12,10 @@ export default class UserLoginController {
   }
   public goChangeSettings = (event: any) => {
     event.preventDefault();
-    this.router().go('/change-user-data')
+    this.router().go('/change-user-data');
   }
   public goChangePassword = (event: any) => {
     event.preventDefault();
-    this.router().go('/change-password')
+    this.router().go('/change-password');
   }
 } 

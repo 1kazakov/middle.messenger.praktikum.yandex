@@ -16,4 +16,4 @@ export default interface chatModel{
     content: string,
   }
   messages?: {[key: string]: any}[]
-}
+};

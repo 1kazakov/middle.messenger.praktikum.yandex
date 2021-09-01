@@ -1,4 +1,4 @@
-import renderBlock from "./render"
+import renderBlock from "./render";
 
 export default class Route {
   _pathname: string

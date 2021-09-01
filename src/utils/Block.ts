@@ -73,7 +73,7 @@ export default class Block {
 
   _init() {
     this._createResources();
-    this.init()
+    this.init();
     this.eventBus().emit(this.EVENTS.FLOW_CDM);
   }
 
@@ -118,7 +118,7 @@ export default class Block {
     }
     if (Object.keys(this.props).includes('events')) {
       for (let dataAttrOfElement of Object.keys(this.props.events)) {
-        Object.keys(this.props.events[dataAttrOfElement]).forEach(eventName => runEvents(dataAttrOfElement, eventName, this.props.events[dataAttrOfElement][eventName]))
+        Object.keys(this.props.events[dataAttrOfElement]).forEach(eventName => runEvents(dataAttrOfElement, eventName, this.props.events[dataAttrOfElement][eventName]));
       }
     }
   }
@@ -133,7 +133,7 @@ export default class Block {
     }
     if (Object.keys(this.props).includes('events')) {
       for (let dataAttrOfElement of Object.keys(this.props.events)) {
-        Object.keys(this.props.events[dataAttrOfElement]).forEach(eventName => runEvents(dataAttrOfElement, eventName, this.props.events[dataAttrOfElement][eventName], 'removeEventListener'))
+        Object.keys(this.props.events[dataAttrOfElement]).forEach(eventName => runEvents(dataAttrOfElement, eventName, this.props.events[dataAttrOfElement][eventName], 'removeEventListener'));
       }
     }
   }
@@ -146,11 +146,11 @@ export default class Block {
     const block = this.render();
     this._element.innerHTML = '';
     this._element.append(block);
-    setTimeout(this._addEvents.bind(this))
+    setTimeout(this._addEvents.bind(this));
   }
 
   render() {
-    return this.templator().compile(this._meta.template, this._meta.props)
+    return this.templator().compile(this._meta.template, this._meta.props);
   }
 
   getContent() {
@@ -173,7 +173,7 @@ export default class Block {
       deleteProperty() {
         throw new Error('Нет доступа');
       },
-    })
+    });
   }
 
   _createDocumentElement(tagName: string) {
@@ -185,6 +185,6 @@ export default class Block {
   }
 
   hide() {
-    this._element.remove()
+    this._element.remove();
   }
 }

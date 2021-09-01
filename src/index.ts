@@ -1,4 +1,4 @@
-import Router from './utils/router'
+import Router from './utils/router';
 import { Page404, context as propsPage404 } from './pages/404/404';
 import { Page500, context as propsPage500 } from './pages/500/500';
 import { PageChats, context as propsPageChats } from './pages/chats/chats';

@@ -9,6 +9,7 @@
     "camelcase": [
       "error"
     ],
+    "semi": [2, "always"],
     "no-unused-vars": "off",
     "object-shorthand": ["error", "always"],
     "max-len": "off", // "warn"

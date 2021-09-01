@@ -13,22 +13,16 @@ export default class EventBus {
   }
 
   off(event: string, callback: (...args: any[]) => void) {
-		if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+    if (this.listeners[event]) {
+      this.listeners[event] = this.listeners[event].filter(listener => listener !== callback);
     }
-
-    this.listeners[event] = this.listeners[event].filter(
-      listener => listener !== callback
-    );
   }
 
 	emit(event: string, ...args: any[]) {
-    if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+    if (this.listeners[event]) {
+      this.listeners[event].forEach(function(listener) {
+        listener(...args);
+      });
     }
-    
-    this.listeners[event].forEach(function(listener) {
-      listener(...args);
-    });
   }
 }

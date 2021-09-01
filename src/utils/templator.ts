@@ -34,7 +34,7 @@ export default class Templator {
   }
 
   private compileListTemplate() {
-    const tmpl = this.template
+    const tmpl = this.template;
     const listTemplates = [...tmpl.matchAll(this.REGEXP.TEMPLATE_LIST_REGEXP)];
     if (![...listTemplates].length) {
       return;
@@ -59,7 +59,7 @@ export default class Templator {
   }
 
   private compileCondition(context: any) {
-    const tmpl = this.template
+    const tmpl = this.template;
     const conditionTemplates = [...tmpl.matchAll(this.REGEXP.TEMPLATE_CONDITION_REGEXP)];
     if (![...conditionTemplates].length) {
       return;
@@ -105,7 +105,7 @@ export default class Templator {
       return;
     }
 
-    const fields = tmpl.matchAll(regExp)
+    const fields = tmpl.matchAll(regExp);
 
     for (const field of fields) {
       if (field[1]) {
@@ -134,11 +134,11 @@ export default class Templator {
       if (key[2]) { // key[2] = tagName
         const tag = this.getObjectTag(key);
         if ( nestingLevel === 0 || (tag.openTag && map[map.length - 1].openTag) || (tag.openTag && map[map.length - 1].singlTag)) {
-          ++nestingLevel
+          ++nestingLevel;
         } else if (tag.singlTag && map[map.length - 1].openTag) {
-          ++nestingLevel
+          ++nestingLevel;
         } else if ((tag.closeTag && map[map.length - 1].closeTag) || (tag.closeTag && map[map.length - 1].singlTag)) {
-          --nestingLevel
+          --nestingLevel;
         }
         tag.nestingLevel = nestingLevel;
         map.push(tag);
@@ -151,7 +151,7 @@ export default class Templator {
     const { closeTag, tagName, attr, textContent } = key.groups;
     const singlTag = this.singlTags.includes(tagName)
       ? this.singlTags.includes(tagName)
-      : !!key.group?.singlTag
+      : !!key.group?.singlTag;
     const tag: {
       openTag: boolean,
       singlTag: boolean,
@@ -185,7 +185,7 @@ export default class Templator {
         element = document.createElement(tag.tagName);
         if (tag.attrs) {
           for (const attr of tag.attrs) {
-            element.setAttribute(attr[0], this.сompileTemplate(attr[1]))
+            element.setAttribute(attr[0], this.сompileTemplate(attr[1]));
           }
         }
         if (tag.textContent) {
@@ -206,6 +206,6 @@ export default class Templator {
         nesting[tag.nestingLevel - 1].append(content);
       }
     }
-    this.element = nesting[1]
+    this.element = nesting[1];
   }
 }

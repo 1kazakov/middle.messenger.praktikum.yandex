@@ -11,9 +11,9 @@ export default class Validater {
     eventSubmit = (event: any) => {
       event.preventDefault();
       const formInput = [...event.target].filter((item: any) => item.tagName === 'INPUT');
-      formInput.forEach(input => this.checkTypeValidater(event.target, input))
+      formInput.forEach(input => this.checkTypeValidater(event.target, input));
       const formData = formInput.reduce((acc, item) => {
-        acc[item.name] = item.value
+        acc[item.name] = item.value;
         return acc;
       }, {});
     }
@@ -23,7 +23,7 @@ export default class Validater {
     }
 
     eventInputBlur = (event: any) => {
-      this.checkTypeValidater(event.target.parentNode.parentNode, event.target)
+      this.checkTypeValidater(event.target.parentNode.parentNode, event.target);
     }
 
     run(action: string) {

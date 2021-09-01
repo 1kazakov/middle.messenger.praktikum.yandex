@@ -63,7 +63,7 @@ export class PageSettings extends Block {
   componentDidMount() {
     const userData = this.store().getProps('user');
     this.props.userData.forEach((settingElement: any) => {
-      settingElement.setProps({value: userData[settingElement._meta.props.name]})
+      settingElement.setProps({value: userData[settingElement._meta.props.name]});
     });
   }
   render() {
@@ -75,7 +75,7 @@ export class PageSettings extends Block {
       buttonChangeData: this.props.buttonChangeData,
       buttonChangePassword: this.props.buttonChangePassword,
       buttonExit: this.props.buttonExit.render(),
-    })
+    });
     return page;
   }
 }
