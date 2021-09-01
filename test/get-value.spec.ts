@@ -9,9 +9,9 @@ describe("Typescript + Babel usage suite", () => {
       d: ['0', 'string', undefined]
     },
     e: 'undefined',
-  }
+  };
 
-  it("Дожно возвращаться нужное значение", () => {
+  it("Должно возвращаться нужное значение", () => {
     expect(getValue(obj, 'a'), 'string');
     expect(getValue(obj, 'b.c'), '1');
     expect(getValue(obj, 'b.d.1'), 'string');
@@ -19,7 +19,7 @@ describe("Typescript + Babel usage suite", () => {
     expect(getValue(obj, 'e'), 'undefined');
   });
 
-  it("Дожно возвращаться 'undefined'", () => {
+  it("Должно возвращаться 'undefined'", () => {
     expect(getValue(obj, 'j'), undefined);
   });
 }); 
