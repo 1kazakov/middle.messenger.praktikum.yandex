@@ -1,3 +1,5 @@
+import './signup.css';
+
 export default `
 <div class="container">
   <main class="page-sing-up">

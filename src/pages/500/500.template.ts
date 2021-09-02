@@ -1,3 +1,5 @@
+import './500.css';
+
 export default `
 <div class="container">
   <main class="page">

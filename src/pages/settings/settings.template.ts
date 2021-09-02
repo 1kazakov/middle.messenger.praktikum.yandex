@@ -1,3 +1,5 @@
+import './settings.css';
+
 export default `
 <div class="container">
   <main class="page-settings">
