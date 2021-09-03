@@ -1,3 +1,8 @@
+import './chats.css';
+import '../../components/button/button.css';
+import '../../components/chat/chat.css';
+import '../../components/message/message.css';
+
 export default `
 <main class="page">
   <div class="page__chats chats">

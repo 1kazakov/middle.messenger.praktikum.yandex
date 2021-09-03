@@ -17,7 +17,7 @@ export default class UserSignUpController {
   public signUp = async (event: any) => {
     event.preventDefault();
     try {
-      // Запускаем крутилку  
+      // TODO сделать крутилку
       const data = validateForm(event.target);
       const payload = JSON.stringify({
         'first_name': data.first_name,
@@ -31,8 +31,6 @@ export default class UserSignUpController {
       this.store.setValue('user', reqData);
 
       this.router().go('/chats');
-
-      // Останавливаем крутилку
     } catch (error) {
       console.log(error);
     }

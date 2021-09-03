@@ -1,3 +1,5 @@
+import './change-avatar.css';
+
 export default `
 <div class="container">
   <main class="page-change-avatar">

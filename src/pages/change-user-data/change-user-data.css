@@ -44,6 +44,10 @@
   border-bottom: 1px solid var(--main-gray-800);
 }
 
+.page-change-data__input-list {
+  width: 510px;
+}
+
 .input-list__item.error {
   border-bottom-color: var(--attention-color);
 }
@@ -53,7 +57,7 @@
   margin: 0;
 }
 
-/* .input-list__item-input {
+.page-change-data .input-list__item-input {
   padding: 0;
   margin: 0;
   color: var(--accent-color-800);
@@ -62,10 +66,10 @@
   text-align: end;
 }
 
-.input-list__item-input::placeholder {
+.page-change-data .input-list__item-input::placeholder {
   font-weight: 500;
   color: var(--accent-color-800);
-} */
+}
 
 .input-list__button {
   min-height: 37px;

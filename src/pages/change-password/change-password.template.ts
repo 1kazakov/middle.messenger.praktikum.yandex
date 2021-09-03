@@ -1,3 +1,5 @@
+import './change-password.css';
+
 export default `
 <div class="container">
   <main class="page-change-password">

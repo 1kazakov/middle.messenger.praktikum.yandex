@@ -1,3 +1,6 @@
+import './change-user-data.css';
+import '../../components/list-item/list-item.css';
+
 export default `
 <div class="container">
   <main class="page-change-data">
