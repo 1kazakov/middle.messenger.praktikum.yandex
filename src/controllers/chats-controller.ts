@@ -18,7 +18,7 @@ export default class ChatsController {
   }
   public getChats = async () => {
     try {
-      лк// TODO сделать крутиу
+      // TODO сделать крутиу
       const chatsData: any = await chatsAPI.getChats({ data: {offset: 0, limit: 5} });
       this.store().setValue('chats', JSON.parse(chatsData));
     } catch (error) {

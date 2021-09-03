@@ -47,8 +47,6 @@ export default class UserSignUpController {
       await singUpApi.updateUserPassword({ data: payload });
 
       this.router().go('/settings');
-
-      /
     } catch (error) {
       console.log(error);
     }
