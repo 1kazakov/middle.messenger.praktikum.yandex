@@ -20,7 +20,7 @@ export default class ChatsController {
     try {
       // TODO сделать крутиу
       const chatsData: any = await chatsAPI.getChats({ data: {offset: 0, limit: 5} });
-      this.store().setValue('chats', JSON.parse(chatsData));
+      this.store().setValue('chats', chatsData);
     } catch (error) {
       console.log(error?.message);
       this.router().go('/login');
