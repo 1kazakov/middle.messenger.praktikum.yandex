@@ -22,7 +22,8 @@ export default class ChatsController {
       const chatsData: any = await chatsAPI.getChats({ data: {offset: 0, limit: 5} });
       this.store().setValue('chats', JSON.parse(chatsData));
     } catch (error) {
-      console.log(error);
+      console.log(error?.message);
+      this.router().go('/login');
     }
   }
   public createNewChat = async (event: any) => {
@@ -83,7 +84,6 @@ export default class ChatsController {
   }
   public sendMessage = (event: any) => {
     event.preventDefault();
-    console.dir(event.target);
     
     const message = [...event.target].filter((item: any) => item.name === 'message')[0].value.trim();
     if (!message) {

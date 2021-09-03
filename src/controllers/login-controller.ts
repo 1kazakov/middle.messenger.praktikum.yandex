@@ -27,7 +27,7 @@ export default class UserLoginController {
       await this.getUserData();
       this.router().go('/chats');
     } catch (error) {
-      console.log(error);
+      console.log(error?.message);
     }
   }
   public getUserData = async () => {
@@ -36,6 +36,7 @@ export default class UserLoginController {
       this.store().setValue('user', JSON.parse(userData));
     } catch(error) {
       this.router().go('/login');
+      throw new Error(error?.message);
     }
   }
   public logout = async () => {
