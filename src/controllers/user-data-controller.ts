@@ -17,7 +17,7 @@ export default class UserSignUpController {
   public updateUserData = async (event: any) => {
     event.preventDefault();
     try {
-      // Запускаем крутилку  
+      // TODO сделать крутилку
       const data = validateForm(event.target);
       const payload = JSON.stringify({
         'first_name': data.first_name,
@@ -28,14 +28,9 @@ export default class UserSignUpController {
         phone: data.phone
       });
       const userData: any = await singUpApi.updateUserData({ data: payload });
-            
-      if (userData.status === 200) {
-        this.store().setValue('user', JSON.parse(userData.response));
-      }
+      this.store().setValue('user', JSON.parse(userData));
 
       this.router().go('/settings');
-
-      // Останавливаем крутилку
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +38,7 @@ export default class UserSignUpController {
   public updateUserPassword = async (event: any) => {
     event.preventDefault();
     try {
-      // Запускаем крутилку  
+      // TODO сделать крутилку
       const data = validateForm(event.target);
       const payload = JSON.stringify({
         oldPassword: data.oldPassword,
@@ -53,7 +48,7 @@ export default class UserSignUpController {
 
       this.router().go('/settings');
 
-      // Останавливаем крутилку
+      /
     } catch (error) {
       console.log(error);
     }

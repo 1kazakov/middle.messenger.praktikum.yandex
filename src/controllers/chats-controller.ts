@@ -18,13 +18,9 @@ export default class ChatsController {
   }
   public getChats = async () => {
     try {
-      // Запускаем крутилку
+      лк// TODO сделать крутиу
       const chatsData: any = await chatsAPI.getChats({ data: {offset: 0, limit: 5} });
-      if (chatsData.status === 200) {
-        this.store().setValue('chats', JSON.parse(chatsData.response));
-      }
-
-      // Останавливаем крутилку
+      this.store().setValue('chats', JSON.parse(chatsData));
     } catch (error) {
       console.log(error);
     }
@@ -33,16 +29,14 @@ export default class ChatsController {
     try {
       event.preventDefault();
       const data = validateForm(event.target);
-      // Запускаем крутилку
+      // TODO сделать крутилку
       const payload = JSON.stringify({
         title: data.title,
       });
-      const newChat: any = await chatsAPI.createNewChat({ data: payload });
-      if (newChat.status === 200) {
-        await this.getChats();
-      }
-    } catch {
-
+      await chatsAPI.createNewChat({ data: payload });
+      await this.getChats();
+    } catch(error) {
+      console.log(error);
     }
   }
   public goSettings = () => {

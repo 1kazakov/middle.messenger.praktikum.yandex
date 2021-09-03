@@ -18,19 +18,14 @@ export default class UserLoginController {
     event.preventDefault();
     try {
       const data = validateForm(event.target);
-      // Запускаем крутилку            
+      // TODO сделать крутилку          
       const payload = JSON.stringify({
         login: data.login,
         password: data.password
       });
-      const reqData: any = await loginApi.logining({ data: payload });
-      if (reqData.status !== 200) {
-        throw new Error (JSON.parse(reqData.response).reason);
-      }
-      
+      await loginApi.logining({ data: payload });
       this.getUserData();
       this.router().go('/chats');
-        // Останавливаем крутилку
     } catch (error) {
       console.log(error);
     }
@@ -38,11 +33,7 @@ export default class UserLoginController {
   public getUserData = async () => {
     try {
       const userData: any = await loginApi.getUserData();
-      if (userData.status === 200) {
-        this.store().setValue('user', JSON.parse(userData.response));
-        return;
-      }
-      throw new Error('Необходимо авторизироваться');
+      this.store().setValue('user', JSON.parse(userData));
     } catch(error) {
       this.router().go('/login');
     }
