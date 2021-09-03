@@ -14,7 +14,12 @@ export default class LoginAPI {
     if (userData.status !== 200) {
       throw new Error ('Ошибка получения данных пользователя');
     }
-    return userData.response;
+    try {
+      const data = JSON.parse(userData.response);
+      return data;
+    } catch(erorr) {
+      throw new Error ('Ошибка получения данных пользователя');
+    }
   }
   public async logout() {
     return await loginAPIInstance.post('/auth/logout');

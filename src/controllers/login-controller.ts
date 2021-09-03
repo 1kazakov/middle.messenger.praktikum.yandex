@@ -33,7 +33,7 @@ export default class UserLoginController {
   public getUserData = async () => {
     try {
       const userData: any = await loginApi.getUserData();
-      this.store().setValue('user', JSON.parse(userData));
+      this.store().setValue('user', userData);
     } catch(error) {
       this.router().go('/login');
       throw new Error(error?.message);

@@ -3,7 +3,7 @@ import Router from '../utils/router';
 import Store from '../utils/store';
 import { validateForm } from '../utils/validate.utils';
 
-const singUpApi = new UserApi();
+const userApi = new UserApi();
 
 export default class UserSignUpController {
   router: any
@@ -27,8 +27,8 @@ export default class UserSignUpController {
         email: data.email,
         phone: data.phone
       });
-      const userData: any = await singUpApi.updateUserData({ data: payload });
-      this.store().setValue('user', JSON.parse(userData));
+      const userData: any = await userApi.updateUserData({ data: payload });
+      this.store().setValue('user', userData);
 
       this.router().go('/settings');
     } catch (error) {
@@ -44,7 +44,7 @@ export default class UserSignUpController {
         oldPassword: data.oldPassword,
         newPassword: data.newPassword,
       });
-      await singUpApi.updateUserPassword({ data: payload });
+      await userApi.updateUserPassword({ data: payload });
 
       this.router().go('/settings');
     } catch (error) {
