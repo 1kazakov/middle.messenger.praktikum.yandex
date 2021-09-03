@@ -38,18 +38,18 @@ body {
   border-bottom-color: var(--attention-color);
 }
 
-/* .input-list__item-input {
+.page-change-avatar .input-list__item-input {
   border: none;
   background-color: var(--main-gray-600);
   padding: 0;
 }
 
-.input-list__item-input::placeholder {
+.page-change-avatar .input-list__item-input::placeholder {
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
   color: var(--accent-color-800);
-} */
+}
 
 .input-list__item-label {
   color: var(--main-gray-100);

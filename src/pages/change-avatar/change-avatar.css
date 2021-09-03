@@ -55,19 +55,19 @@
   align-items: center;
 }
 
-/* .input-list__item-input {
+.page-change-avatar .input-list__item-input {
   padding: 0;
   margin: 0;
   color: var(--accent-color-800);
   border: none;
   background-color: var(--main-gray-600);
   text-align: end;
-} */
+}
 
-/* .input-list__item-input::placeholder {
+.page-change-avatar .input-list__item-input::placeholder {
   font-weight: 500;
   color: var(--accent-color-800);
-} */
+}
 
 .input-list__button {
   min-height: 37px;
