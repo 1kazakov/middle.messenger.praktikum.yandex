@@ -24,7 +24,7 @@ export default class UserLoginController {
         password: data.password
       });
       await loginApi.logining({ data: payload });
-      this.getUserData();
+      await this.getUserData();
       this.router().go('/chats');
     } catch (error) {
       console.log(error);

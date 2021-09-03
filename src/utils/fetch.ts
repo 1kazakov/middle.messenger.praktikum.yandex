@@ -38,7 +38,6 @@ export default class HTTPTransport {
 
   request = (url: string, options: any = {}, timeout = 5000) => {
       const {headers = {}, method, data} = options;
-      console.log(`${urlApiHost}${url}`);
       return new Promise(function(resolve, reject) {
           if (!method) {
             reject('No method');
