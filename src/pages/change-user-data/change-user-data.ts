@@ -1,13 +1,17 @@
 import pageTemplates from './change-user-data.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
-import Input from '../../components/input/input';
+import Input from '../../components/list-item/list-item';
+import UserController from '../../controllers/user-data-controller';
 
-const context: {
+const userController = new UserController();
+
+export const context: {
   namePage: string;
   avatar: string;
   userData: any[]
   buttonSave: any;
+  events: {[key: string]: any}
 } = {
   namePage: 'Изменение данных пользователя',
   avatar:  'какой-то url',
@@ -72,31 +76,37 @@ const context: {
     buttonType: 'submit',
     buttonClass: 'input-list__button button button-primary',
   }),
+  events: {
+    'update-user-data': {
+      submit: userController.updateUserData,
+    },
+  }
 };
 
 
-class PageChangeUserData extends Block {
+export class PageChangeUserData extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
+  componentDidMount() {
+    const userData = this.store().getProps('user');
+    this.props.userData.forEach((inputElement: any) => {
+      inputElement.setProps({value: userData[inputElement._meta.props.name]});
+    });
+  }
   render() {
-    const html = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       userData: this.props.userData.map((item: any) => item.render()),
       buttonSave: this.props.buttonSave.render(),
-    })
-    document.body.innerHTML = html;
-    return html;
+    });
+    return page;
   }
   addEvents() {
     return true;
   }
   removeEvents() {
-    return true
+    return true;
   }
 }
-
-const page = new PageChangeUserData(context);
-
-page.render()

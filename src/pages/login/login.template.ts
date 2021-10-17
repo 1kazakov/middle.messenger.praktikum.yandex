@@ -1,19 +1,21 @@
+import './login.css';
+import '../../components/list-item/list-item.css';
+
 export default `
 <div class="container">
-  <main class="page">
-    <h1 class="page__title"> {{ namePage }} </h1>
-    <form class="page__form">
-      <ul class="page-__input-list input-list">
-        <li class="input-list__item">
-          {{ login }}
-        </li>
-        <li class="input-list__item">
-          {{ password }}
-        </li>
+  <main class="page-login">
+    <h1 class="page-login__title"> {{ namePage }} </h1>
+    <form class="page-login__form login-form">
+      <ul class="page-login-__input-list input-list">
+        {% userData %}
+          <li class="input-list__item-wrapper">
+            {{ input }}
+          </li>
+        {% end %}
       </ul>
-      {{ button }}
-    <form>
-    <a class="page__link" href="../signup/signup.html">{{ signUpText }}</a>
+        {{ button }}
+    </form>
+    <a class="page-login__link" href="/sign-up">{{ signUpText }}</a>
   </main>
 </div>
 `;

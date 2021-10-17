@@ -1,4 +1,4 @@
-.page__title {
+.page-change-avatar__title {
   display: flex;
   justify-content: center;
   font-weight: 500;
@@ -23,11 +23,10 @@
   overflow: hidden;
 }
 
-.page__form {
+.page-change-avatar__form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 510px;
   margin: 0 auto;
 }
 
@@ -35,7 +34,6 @@
   list-style: none;
   padding: 0;
   margin: 0 0 162px;
-  width: 510px;
 }
 
 .input-list__item {
@@ -54,9 +52,10 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.input-list__item-input {
+.page-change-avatar .input-list__item-input {
   padding: 0;
   margin: 0;
   color: var(--accent-color-800);
@@ -65,7 +64,7 @@
   text-align: end;
 }
 
-.input-list__item-input::placeholder {
+.page-change-avatar .input-list__item-input::placeholder {
   font-weight: 500;
   color: var(--accent-color-800);
 }

@@ -1,13 +1,17 @@
 import pageTemplates from './signup.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
-import Input from '../../components/input/input';
+import Input from '../../components/list-item/list-item';
+import SignUpController from '../../controllers/sign-up-controller';
 
-const context: {
+const signUpController = new SignUpController();
+
+export const context: {
   namePage: string
   userData: any[]
   buttonSingUp: any
   enterText: string
+  events: any
 }  = {
   namePage: 'Регистрация',
   userData: [
@@ -79,30 +83,30 @@ const context: {
     buttonClass: 'input-list__button button button-primary',
   }),
   enterText: 'Войти',
+  events: {
+    'sing-up-form': {
+      submit: signUpController.signUp,
+    },
+  }
 };
 
-class PageSingUp extends Block {
+export class PageSignUp extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       userData: this.props.userData.map((item: any) => item.render()),
       buttonSingUp: this.props.buttonSingUp.render(),
       enterText: this.props.enterText,
-    })
-    document.body.innerHTML = html;
-    return html;
+    });
+    return page;
   }
   addEvents() {
     return true;
   }
   removeEvents() {
-    return true
+    return true;
   }
 }
-
-const page = new PageSingUp(context);
-
-page.render()

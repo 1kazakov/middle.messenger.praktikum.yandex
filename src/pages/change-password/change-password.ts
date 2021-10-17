@@ -1,15 +1,19 @@
 import pageTemplates from './change-password.template';
 import Block from '../../utils/Block';
-import Input from '../../components/input/input';
+import Input from '../../components/list-item/list-item';
 import Button from '../../components/button/button';
+import UserController from '../../controllers/user-data-controller';
 
-const context: {
+const userController = new UserController();
+
+export const context: {
   namePage: string
   avatar: string
   oldPassword: any
   newPassword: any
   passwordRepeat: any
   buttonSave: any
+  events: {[key: string]: any}
 } = {
   namePage: 'Изменение пароля',
   avatar: 'какой-то url',
@@ -41,14 +45,19 @@ const context: {
     buttonType: 'submit',
     buttonClass: 'input-list__button button button-primary',
   }),
+  events: {
+    'update-user-password': {
+      submit: userController.updateUserPassword,
+    },
+  }
 };
 
-class PageChangePassword extends Block {
+export class PageChangePassword extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
   render() {
-    const html = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       avatar: this.props.avatar,
       userData: [
@@ -57,18 +66,13 @@ class PageChangePassword extends Block {
         this.props.passwordRepeat.render(),
       ],
       buttonSave: this.props.buttonSave.render(),
-    })
-    document.body.innerHTML = html;
-    return html;
+    });
+    return page;
   }
   addEvents() {
     return true;
   }
   removeEvents() {
-    return true
+    return true;
   }
 }
-
-const page = new PageChangePassword(context);
-
-page.render()

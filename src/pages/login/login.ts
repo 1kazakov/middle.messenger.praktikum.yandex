@@ -1,14 +1,17 @@
 import pageTemplates from './login.template';
 import Block from '../../utils/Block';
-import Input from '../../components/input/input';
+import Input from '../../components/list-item/list-item';
 import Button from '../../components/button/button';
+import UserLoginController from '../../controllers/login-controller';
 
+const userLoginController = new UserLoginController();
 
-const context: {
+export const context: {
   namePage: string;
   userData: any[]
   button: any;
   signUpText: string;
+  events: any
 } = {
   namePage: 'Вход',
   userData: [
@@ -29,34 +32,32 @@ const context: {
       value: '',
     }),
   ],
-  button: new Button({ buttonName: 'Авторизоваться',
-               buttonType: 'submit',
-               buttonClass: 'input-list__button button button-primary' }),
+  button: new Button({
+    buttonName: 'Авторизоваться',
+    buttonType: 'submit',
+    buttonClass: 'input-list__button button button-primary',
+  }),
   signUpText: 'Создать новый аккаунт',
+  events: {
+    'login-form': {
+      submit: userLoginController.login,
+    },
+  }
 };
 
-class PageLogin extends Block {
+export class PageLogin extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
+  init() {
+    userLoginController.checkUserAuth();
+  }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    return this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
       signUpText: this.props.signUpText,
       userData: this.props.userData.map((item: any) => item.render()),
       button: this.props.button.render(),
-    })
-    document.body.innerHTML = html;
-    return html;
-  }
-  addEvents() {
-    return true;
-  }
-  removeEvents() {
-    return true
+    });
   }
 }
-
-const page = new PageLogin(context);
-
-page.render()

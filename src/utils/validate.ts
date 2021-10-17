@@ -1,23 +1,29 @@
 export default class Validater {
-    constructor() {}
+  private static __instance: Validater;
+    constructor() {
+      if (Validater.__instance) {
+        return Validater.__instance;
+      }
+  
+      Validater.__instance = this;
+    }
 
     eventSubmit = (event: any) => {
       event.preventDefault();
       const formInput = [...event.target].filter((item: any) => item.tagName === 'INPUT');
-      formInput.forEach(input => this.checkTypeValidater(event.target, input))
+      formInput.forEach(input => this.checkTypeValidater(event.target, input));
       const formData = formInput.reduce((acc, item) => {
-        acc[item.name] = item.value
+        acc[item.name] = item.value;
         return acc;
       }, {});
-      console.log(formData)
     }
 
-    eventFocus = (event: any) => {
+    eventInputFocus = (event: any) => {
       event.target.parentNode.classList.remove('error');
     }
 
-    eventBlur = (event: any) => {
-      this.checkTypeValidater(event.target.parentNode.parentNode, event.target)
+    eventInputBlur = (event: any) => {
+      this.checkTypeValidater(event.target.parentNode.parentNode, event.target);
     }
 
     run(action: string) {
@@ -25,9 +31,6 @@ export default class Validater {
       if (form !== null) {
         form[action]('submit', this.eventSubmit);
       }
-      const formInput = [...form].filter((item: any) => item.tagName === 'INPUT');
-      formInput.forEach(input => input[action]('focus', this.eventFocus))
-      formInput.forEach(input => input[action]('blur', this.eventBlur))
     }
 
     checkTypeValidater (form: any, input: any) {
@@ -103,7 +106,7 @@ validatePhone(input: any) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${input.name}`);
   }
-  const [inputPassword] = form.filter((field: any) => field.name === 'password' || field.name === 'newPassword');
+  const [inputPassword] = [...form].filter((field: any) => field.name === 'password' || field.name === 'newPassword');
   if (!inputPassword.value) {
     input.parentNode.classList.add('error');
     throw new Error(`Поле не заполнено ${inputPassword.name}`);

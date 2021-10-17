@@ -53,7 +53,7 @@ body {
   padding: 12px;
   width: fit-content;
   color: var(--main-gray-600);
-  background: var(--accent-color);
+  background: var(--accent-color-800);
   border-radius: 8px;
   border: none;
   margin-bottom: 16px;

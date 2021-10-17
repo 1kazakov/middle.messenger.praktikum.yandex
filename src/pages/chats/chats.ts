@@ -1,16 +1,28 @@
 import pageTemplates from './chats.template';
 import Block from '../../utils/Block';
 import Button from '../../components/button/button';
-import Input from '../../components/input/input';
+import Input from '../../components/list-item/list-item';
 import Chat from '../../components/chat/chat';
 import Option from '../../components/option/option';
 import Message from '../../components/message/message';
 import MessageAction from '../../components/message-action/message-action';
+import ChatsController from '../../controllers/chats-controller';
+import UserLoginController from '../../controllers/login-controller';
 
-const context: {
+import ChatModel from '../../types/chat';
+import MessageModel from '../../types/message';
+
+const chatsController = new ChatsController();
+const userController = new UserLoginController();
+
+export const context: {
   namePage: string
+  inputSearch: any
   buttonProfile: any
+  inputTitleNewChat: any
+  buttonNewChat: any
   chats: any[]
+  selectedChat: boolean | number
   selectedChatAvatar: string
   selectedChatName:string
   optionList: any[]
@@ -19,78 +31,37 @@ const context: {
   buttonMessageActions: any
   inputMessage: any
   buttonSendMessage: any
+  events: {[key: string]: any}
 } = {
   namePage: 'Чаты',
+  inputSearch: new Input({
+    fildTitle: 'Поиск',
+    name: 'Message',
+    inputClass: 'input-message__input',
+    labelClass: 'visually-hidden',
+    placeholder: 'Поиск',
+    value: '',
+  }),
   buttonProfile: new Button({
     buttonName: 'Профиль',
     buttonType: 'button',
-    buttonClass: 'input-list__button button button-primary',
+    buttonClass: 'button-text button-primary go-to-profile',
   }),
-  chats: [
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'Андрей',
-      chatLastMessage: 'Изображение',
-      chatDate: '10:49',
-      counterMessage: 4,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'Киноклуб',
-      chatLastMessage: 'стикер',
-      chatDate: '12:00',
-      counterMessage: 4,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'Илья',
-      chatLastMessage: 'Друзья, у меня для вас особенный выпуск новостей!...',
-      chatDate: '15:12',
-      counterMessage: 4,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'тет-а-теты',
-      chatLastMessage: 'И Human Interface Guidelines и Material Design рекомендуют...',
-      chatDate: 'Ср',
-      counterMessage: 4,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: '1, 2, 3',
-      chatLastMessage: 'Миллионы россиян ежедневно проводят десятки часов свое...',
-      chatDate: 'Пн',
-      counterMessage: 4,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'Вадим',
-      chatLastMessage: ' Круто!',
-      chatDate: '10:49',
-      counterMessage: 4,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'Design Destroyer',
-      chatLastMessage: 'В 2008 году художник Jon Rafman  начал собирать...',
-      chatDate: 'Пн',
-      counterMessage: 0,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'Day.',
-      chatLastMessage: 'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
-      chatDate: '1 Мая 2020',
-      counterMessage: 0,
-    }),
-    new Chat({
-      chatAvatar: 'какой-то url',
-      chatName: 'Стас Рогозин',
-      chatLastMessage: 'Можно или сегодня или завтра вечером.',
-      chatDate: '12 Апр 2020',
-      counterMessage: 0,
-    }),
-  ],
+  inputTitleNewChat: new Input({
+    fildTitle: 'Название нового чата',
+    name: 'title',
+    inputClass: 'input-message__input',
+    labelClass: 'visually-hidden',
+    placeholder: 'Название нового чата',
+    value: '',
+  }),
+  buttonNewChat: new Button({
+    buttonName: 'Создать чат',
+    buttonType: 'submit',
+    buttonClass: 'button button-primary ',
+  }),
+  chats: [],
+  selectedChat: null,
   selectedChatAvatar: 'какой-то url',
   selectedChatName: 'Вадим',
   optionList: [
@@ -108,14 +79,7 @@ const context: {
     }),
     new Message({
       messageClass: 'message--my',
-      message: `Круто! 
-      <a href="/src/pages/login/login.html">login</a>
-      <a href="/src/pages/signup/signup.html">sign-up</a>
-      <a href="/src/pages/settings/settings.html">settings</a>
-      <a href="/src/pages/change-user-data/change-user-data.html">change-user-data</a>
-      <a href="/src/pages/change-password/change-password.html">change-password</a>
-      <a href="/src/pages/change-avatar/change-avatar.html">change-avatar</a>
-      <a href="/src/pages/404/404.html">404</a>`,
+      message: `Круто!`,
       messageDate: '12:00',
     })
   ],
@@ -137,7 +101,7 @@ const context: {
   }),
   inputMessage: new Input({
     fildTitle: 'Сообщение',
-    name: 'Message',
+    name: 'message',
     inputClass: 'input-message__input',
     labelClass: 'visually-hidden',
     placeholder: 'Сообщение',
@@ -148,18 +112,73 @@ const context: {
     buttonType: 'submit',
     buttonClass: 'button-round--primary button-round',
   }),
+  events: {
+    'create-new-chat': {
+      submit: chatsController.createNewChat,
+    },
+    'go-to-profile': {
+      click: chatsController.goSettings,
+    },
+    'choose-chat': {
+      click: chatsController.chooseChat,
+    },
+    'send-message': {
+      submit: chatsController.sendMessage,
+    }
+  }
 };
 
 
-class PageChats extends Block {
+export class PageChats extends Block {
   constructor(props: {[key: string]: any}) {
     super('div', props, pageTemplates);
   }
+  async init() {
+    this.globalEventBus().on('update-chats', super._componentDidUpdate.bind(this));
+    await userController.getUserData();
+    await chatsController.getChats();
+  }
+  componentDidMount() {
+    const chatsRaw = this.store().getProps('chats');
+    const chatsProps = chatsRaw.map((chat: ChatModel) => {
+      const dateLastMessage = chat.last_message?.time ? new Date(chat.last_message?.time) : null;
+      const time = dateLastMessage ? `${dateLastMessage.getHours()}:${dateLastMessage.getMinutes()}` : null;
+      return new Chat({
+        chatId: chat.id,
+        chatAvatar: chat.avatar,
+        chatName: chat.title,
+        chatLastMessage: chat.last_message?.content,
+        chatDate: time,
+        counterMessage: chat.unread_count !== 0 ? chat.unread_count : null,
+      });
+    });
+    this.props.chats = chatsProps;
+    const currentChat = this.store().getProps('currentChat');
+    const userId = this.store().getProps('user.id');
+    if (currentChat) {
+      const indexChat = chatsRaw.findIndex((chat: any) => chat.id === +currentChat);
+      const messageProps = chatsRaw[indexChat].messages.map((message: MessageModel) => {
+        const dateMessage = new Date(message.time);
+        const time = `${dateMessage.getHours()}:${dateMessage.getMinutes()}`;
+        return new Message({
+          messageClass: message.user_id === userId ? 'message--my' : '',
+          message: message.content,
+          messageDate: time,
+        });
+      });
+      this.props.messages = messageProps;
+    }
+    this.props.selectedChat = !!currentChat;
+  }
   render() {
-    const html: string = this.templator().compile(pageTemplates, {
+    const page: HTMLElement = this.templator().compile(pageTemplates, {
       namePage: this.props.namePage,
-      avatar: this.props.avatar,
+      inputSearch: this.props.inputSearch.render(),
+      buttonProfile: this.props.buttonProfile.render(),
+      inputTitleNewChat: this.props.inputTitleNewChat.render(),
+      buttonNewChat: this.props.buttonNewChat.render(),
       chats: this.props.chats.map((item: any)  => item.render()),
+      selectedChat: this.props.selectedChat,
       selectedChatAvatar: this.props.selectedChatAvatar,
       selectedChatName: this.props.selectedChatName,
       optionList: this.props.optionList.map((item: any) => item.render()),
@@ -167,12 +186,6 @@ class PageChats extends Block {
       inputMessage: this.props.inputMessage.render(),
       buttonSendMessage: this.props.buttonSendMessage.render(),
     });
-    const root = document.querySelector('.root');
-    root.innerHTML = html;
-    return html;
+    return page;
   }
 }
-
-const page = new PageChats(context);
-
-page.render();

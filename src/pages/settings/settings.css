@@ -38,17 +38,24 @@
   color: var(--accent-color-800);
 }
 
-.page__list-change {
+.page-settings__list-change {
   display: grid;
 }
 
-.page__link {
+.page-settings__button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.page-settings__link {
+  font-size: 13px;
+  line-height: 13px;
   text-align: left;
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid var(--main-gray-800);
 }
 
-.page__link:last-child {
+.page-settings__link:last-child {
   border-bottom: none;
 }

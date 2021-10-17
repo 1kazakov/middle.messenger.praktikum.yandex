@@ -1,18 +1,20 @@
+import './signup.css';
+
 export default `
 <div class="container">
-  <main class="page">
-    <h1 class="page__title"> {{ namePage }} </h1>
-    <form class="page__form">
-      <ul class="page-login__input-list input-list">
-        {{ for userData }}
-          <li class="input-list__item">
+  <main class="page-sing-up">
+    <h1 class="page-sing-up__title"> {{ namePage }} </h1>
+    <form class="page-sing-up__form sing-up-form">
+      <ul class="page-sing-up-login__input-list input-list">
+        {% userData %}
+          <li>
             {{ input }}
           </li>
-        {{ /for }}
+        {% end %}
       </ul>
       {{ buttonSingUp }}
-    <form>
-    <a class="page__link" href="../login/login.html">{{ enterText }}</a>
+    </form>
+    <a class="page-sing-up__link" href="/login">{{ enterText }}</a>
   </main>
 </div>
 `;

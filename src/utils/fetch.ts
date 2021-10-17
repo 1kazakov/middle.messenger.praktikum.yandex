@@ -5,6 +5,8 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
+const urlApiHost = 'https://ya-praktikum.tech/api/v2';
+
 function queryStringify(data: any) {
 if (typeof data !== 'object') {
     throw new Error('Data must be object');
@@ -16,7 +18,7 @@ return keys.reduce((result, key, index) => {
 }, '?');
 }
 
-class HTTPTransport {
+export default class HTTPTransport {
   get = (url: string, options: any = {}) => {
        
       return this.request(url, {...options, method: METHODS.GET}, options.timeout);
@@ -36,26 +38,29 @@ class HTTPTransport {
 
   request = (url: string, options: any = {}, timeout = 5000) => {
       const {headers = {}, method, data} = options;
-
       return new Promise(function(resolve, reject) {
           if (!method) {
-              reject('No method');
-              return;
+            reject('No method');
+            return;
           }
 
           const xhr = new XMLHttpRequest();
           const isGet = method === METHODS.GET;
 
           xhr.open(
-              method, 
+              method,
               isGet && !!data
-                  ? `${url}${queryStringify(data)}`
-                  : url,
+                  ? `${urlApiHost}${url}${queryStringify(data)}`
+                  : `${urlApiHost}${url}`,
           );
 
           Object.keys(headers).forEach(key => {
               xhr.setRequestHeader(key, headers[key]);
           });
+
+          xhr.withCredentials = true;
+
+          xhr.setRequestHeader('Content-Type', 'application/json');
       
           xhr.onload = function() {
               resolve(xhr);
@@ -66,6 +71,7 @@ class HTTPTransport {
       
           xhr.timeout = timeout;
           xhr.ontimeout = reject;
+
           
           if (isGet || !data) {
               xhr.send();
