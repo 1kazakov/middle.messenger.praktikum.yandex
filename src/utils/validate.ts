@@ -12,10 +12,6 @@ export default class Validater {
       event.preventDefault();
       const formInput = [...event.target].filter((item: any) => item.tagName === 'INPUT');
       formInput.forEach(input => this.checkTypeValidater(event.target, input));
-      const formData = formInput.reduce((acc, item) => {
-        acc[item.name] = item.value;
-        return acc;
-      }, {});
     }
 
     eventInputFocus = (event: any) => {
