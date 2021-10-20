@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js",
-    "start": "node ./server.js",
+    "start": "npm-run-all build server",
+    "server": "node ./server.js",
     "build": "node ./node_modules/.bin/webpack",
     "lint:fix": "eslint . --fix",
     "style": "npx stylelint '**/*.css'",
