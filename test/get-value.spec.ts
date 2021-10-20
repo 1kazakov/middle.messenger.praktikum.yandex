@@ -1,5 +1,5 @@
-import getValue from "../src/utils/get-value";
-import { expect } from "chai";
+import getValue from '../src/utils/get-value';
+import { expect } from 'chai';
 
 describe("Typescript + Babel usage suite", () => {
   const obj = {
