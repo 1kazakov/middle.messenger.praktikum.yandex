@@ -1,4 +1,5 @@
 import './login.css';
+import '../../layout/default/default.css';
 import '../../components/list-item/list-item.css';
 
 export default `
